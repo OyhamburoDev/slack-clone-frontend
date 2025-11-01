@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router";
-import LoginScreen from "./screens/loginScreen/LoginScreen";
+import { LoginScreen } from "./screens/loginScreen/LoginScreen";
 import RegisterScreen from "./screens/registerScreen/RegisterScreen";
 
 function App() {
