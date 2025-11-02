@@ -18,8 +18,8 @@ const HomeScreen = () => {
         response &&
         response.data.workspaces.map((elemento) => {
           return (
-            <div key={elemento.workspace_id}>
-              <h2>{elemento.workspace_name}</h2>
+            <div key={elemento._id}>
+              <h2>{elemento.name}</h2>
               <a href={`/workspace/${elemento.workspace_id}`}>Entrar</a>
             </div>
           );
