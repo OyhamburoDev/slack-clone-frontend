@@ -30,4 +30,18 @@ async function createWorkspace(name, url_image = "") {
   return response_data;
 }
 
-export { getWorkspaceList, createWorkspace };
+async function getWorkspaceById(workspace_id) {
+  const response_http = await fetch(
+    `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}`,
+    {
+      method: HTTP_METHODS.GET,
+      headers: {
+        Authorization: "Bearer" + getAuthorizationToken(),
+      },
+    }
+  );
+  const response_data = await response_http.json();
+  return response_data;
+}
+
+export { getWorkspaceList, createWorkspace, getWorkspaceById };

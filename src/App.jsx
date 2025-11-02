@@ -4,6 +4,7 @@ import { LoginScreen } from "./screens/loginScreen/LoginScreen";
 import RegisterScreen from "./screens/registerScreen/RegisterScreen";
 import HomeScreen from "./screens/homeScreen/HomeScreen";
 import CreateWorkspaceScreen from "./screens/createWorkspaceScreen/CreateWorkspaceScreen";
+import WorkspaceDetailScreen from "./screens/workspaceDetailScreen/WorkspaceDetailScreen";
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/home" element={<HomeScreen />} />
       <Route path="/workspace/new" element={<CreateWorkspaceScreen />} />
+      <Route
+        path="/workspace/:workspace_id"
+        element={<WorkspaceDetailScreen />}
+      />
     </Routes>
   );
 }

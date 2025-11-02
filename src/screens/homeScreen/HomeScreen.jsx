@@ -20,7 +20,7 @@ const HomeScreen = () => {
           return (
             <div key={elemento._id}>
               <h2>{elemento.name}</h2>
-              <a href={`/workspace/${elemento.workspace_id}`}>Entrar</a>
+              <a href={`/workspace/${elemento._id}`}>Entrar</a>
             </div>
           );
         })}
