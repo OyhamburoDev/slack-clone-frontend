@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, useParams } from "react-router";
+import { useParams } from "react-router";
 import useChannels from "../../hooks/useChannels";
 
-const ChannelList = () => {
+const ChannelList = ({ onSelectChannel }) => {
   const { workspace_id } = useParams();
   const { channels } = useChannels();
 
@@ -13,12 +13,18 @@ const ChannelList = () => {
       <h2>Canales</h2>
       {channels.map((elemento) => {
         return (
-          <Link
+          <button
             key={elemento._id}
-            to={`/workspace/${workspace_id}/${elemento._id}`}
+            onClick={() => onSelectChannel(elemento._id)}
+            style={{
+              padding: "8px",
+              margin: "5px 0",
+              cursor: "pointer",
+              textAlign: "left",
+            }}
           >
             {elemento.name}
-          </Link>
+          </button>
         );
       })}
     </div>
