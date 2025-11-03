@@ -11,19 +11,22 @@ const HomeScreen = () => {
   }, []);
 
   console.log("es este", response, loading, error);
+  console.log("WORKSPACES:", response?.data?.workspaces);
   return (
     <div>
       <h1>Espacios de trabajo</h1>
       {!loading &&
         response &&
-        response.data.workspaces.map((elemento) => {
-          return (
-            <div key={elemento._id}>
-              <h2>{elemento.name}</h2>
-              <a href={`/workspace/${elemento._id}`}>Entrar</a>
-            </div>
-          );
-        })}
+        response.data.workspaces
+          .filter((elemento) => elemento.workspace !== null)
+          .map((elemento) => {
+            return (
+              <div key={elemento._id}>
+                <h2>{elemento.workspace.name}</h2>
+                <a href={`/workspace/${elemento.workspace._id}`}>Entrar</a>
+              </div>
+            );
+          })}
       <Link to={"/workspace/new"}>Crear nuevo espacio de trabajo</Link>
     </div>
   );
