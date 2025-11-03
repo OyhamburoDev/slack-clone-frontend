@@ -44,4 +44,20 @@ async function getWorkspaceById(workspace_id) {
   return response_data;
 }
 
-export { getWorkspaceList, createWorkspace, getWorkspaceById };
+async function inviteMember(workspace_id, invited_email) {
+  const response_http = await fetch(
+    `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}/invite`,
+    {
+      method: HTTP_METHODS.POST,
+      headers: {
+        [HEADERS.CONTENT_TYPE]: CONTENT_TYPE_VALUES.JSON,
+        Authorization: "Bearer " + getAuthorizationToken(),
+      },
+      body: JSON.stringify({ invited_email }),
+    }
+  );
+  const response_data = await response_http.json();
+  return response_data;
+}
+
+export { getWorkspaceList, createWorkspace, getWorkspaceById, inviteMember };

@@ -12,7 +12,7 @@ async function getChannelListByWorkspaceId(workspace_id) {
     {
       method: HTTP_METHODS.GET,
       headers: {
-        Authorization: "Beaber" + getAuthorizationToken(),
+        Authorization: "Beaber " + getAuthorizationToken(),
       },
     }
   );
@@ -27,7 +27,7 @@ async function createNewChannel(workspace_id, channel_name) {
       method: HTTP_METHODS.POST,
       headers: {
         [HEADERS.CONTENT_TYPE]: CONTENT_TYPE_VALUES.JSON,
-        Authorization: "Bearer" + getAuthorizationToken(),
+        Authorization: "Bearer " + getAuthorizationToken(),
       },
       body: JSON.stringify({ name: channel_name }),
     }
