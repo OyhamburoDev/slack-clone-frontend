@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useFetch from "../../hooks/useFetch.jsx";
 import useForm from "../../hooks/useForm.jsx";
 import { login } from "../../services/authService.js";
 import { useNavigate } from "react-router";
 import LOCALSTORAGE_KEYS from "../../constants/localstorage.js";
+import "./LoginScreen.css";
+import slackLogo from "../../assets/images/slack-logo.png";
 
 const FORM_FIELDS = {
   EMAIL: "email",
@@ -29,7 +31,6 @@ export const LoginScreen = () => {
   useEffect(() => {
     console.log(response);
     if (response && response.ok) {
-      //Guardamos el token emitido por el backend, para despues usarlo como credencial
       localStorage.setItem(
         LOCALSTORAGE_KEYS.AUTH_TOKEN,
         response.data.authorization_token
@@ -48,41 +49,73 @@ export const LoginScreen = () => {
   });
 
   return (
-    <div>
-      <h1>Iniciar Sesión</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor={FORM_FIELDS.EMAIL}>Email:</label>
-          <input
-            name={FORM_FIELDS.EMAIL}
-            id={FORM_FIELDS.EMAIL}
-            type="email"
-            onChange={handleInputChange}
-          />
+    <div className="login-container">
+      <div className="login-card">
+        <div className="login-logo">
+          <img src={slackLogo} alt="Slack logo" />
         </div>
-        <div>
-          <label htmlFor={FORM_FIELDS.PASSWORD}>Contraseña:</label>
-          <input
-            name={FORM_FIELDS.PASSWORD}
-            id={FORM_FIELDS.PASSWORD}
-            type="password"
-            onChange={handleInputChange}
-          />
-        </div>
-        {!response ? (
-          <button type="submit" disabled={loading}>
-            {loading ? "Iniciando sesión..." : "Iniciar Sesión"}
-          </button>
-        ) : (
-          <>
-            <button type="submit" disabled={true}>
-              Sesión Iniciada
+
+        <h1 className="login-title">Iniciar sesión en Slack</h1>
+        <p className="login-subtitle">
+          Te sugerimos que uses la{" "}
+          <strong>
+            dirección de correo electrónico que usas en el trabajo.
+          </strong>
+        </p>
+
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-group">
+            <label htmlFor={FORM_FIELDS.EMAIL} className="form-label">
+              Correo electrónico
+            </label>
+            <input
+              name={FORM_FIELDS.EMAIL}
+              id={FORM_FIELDS.EMAIL}
+              type="email"
+              onChange={handleInputChange}
+              className="form-input"
+              placeholder="nombre@empresa.com"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor={FORM_FIELDS.PASSWORD} className="form-label">
+              Contraseña
+            </label>
+            <input
+              name={FORM_FIELDS.PASSWORD}
+              id={FORM_FIELDS.PASSWORD}
+              type="password"
+              onChange={handleInputChange}
+              className="form-input"
+              placeholder="Ingresa tu contraseña"
+            />
+          </div>
+
+          {!response ? (
+            <button type="submit" disabled={loading} className="submit-button">
+              {loading
+                ? "Iniciando sesión..."
+                : "Iniciar sesión con correo electrónico"}
             </button>
-            <span style={{ color: "green" }}>{response.message}</span>
-          </>
-        )}
-        {error && <span style={{ color: "red" }}>{error.message}</span>}
-      </form>
+          ) : (
+            <>
+              <button
+                type="submit"
+                disabled={true}
+                className="submit-button success"
+              >
+                Sesión Iniciada
+              </button>
+              <div className="message success">{response.message}</div>
+            </>
+          )}
+          {error && <div className="message error">{error.message}</div>}
+        </form>
+
+        <div className="login-footer">
+          ¿Eres nuevo en Slack? <a href="/register">Crea una cuenta</a>
+        </div>
+      </div>
     </div>
   );
 };
