@@ -1,0 +1,535 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4a154b 0%, #36184c 50%, #1a0b2e 100%);
+  padding: 1rem 1rem 1rem;
+}
+
+/* ===== HEADER (Logo + Botón crear) ===== */
+.home-header {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.slack-white-logo {
+  width: 150px;
+  height: auto;
+}
+
+.create-workspace-button-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #611f69;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.create-workspace-button-header:hover {
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+}
+
+.create-workspace-button-header:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.home-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ===== CARD DE WORKSPACES (lista) ===== */
+.workspaces-card {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.workspaces-card-header {
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px solid #e8e8e8;
+  background-color: #f9f0ff;
+}
+
+.workspaces-card-title {
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: #1d1c1d;
+  line-height: 1.3;
+}
+
+/* ===== LISTA DE WORKSPACES ===== */
+.workspaces-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.workspace-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e8e8e8;
+  transition: background-color 0.2s ease;
+  gap: 1.5rem;
+}
+
+.workspace-item:last-child {
+  border-bottom: none;
+}
+
+.workspace-item:hover {
+  background-color: #f8f8f8;
+}
+
+.workspace-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Iconos de workspace */
+.workspace-icon {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-square {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-square:first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.icon-square:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.icon-bar {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  height: 100%;
+}
+
+.workspace-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.workspace-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1d1c1d;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #611f69;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.workspace-button:hover {
+  background-color: #4a154b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón mostrar más */
+.show-more-button {
+  display: block;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1264a3;
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid #e8e8e8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.show-more-button:hover {
+  background-color: #f8f8f8;
+  color: #0b4c8c;
+}
+
+/* ===== CARD CREAR WORKSPACE (abajo) ===== */
+.create-workspace-card-bottom {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 20px 0 0;
+  overflow: visible; /* ← MANTÉN visible */
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.create-workspace-illustration {
+  flex-shrink: 0;
+  width: 170px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5e6d3 0%, #e8d4bb 100%);
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  position: relative;
+  overflow: visible;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 2; /* ← AÑADE esto para que esté por encima */
+}
+
+.illustration-image {
+  width: 200%;
+  height: 200%;
+  object-fit: contain;
+  position: absolute;
+  left: -55%;
+  top: 10%;
+  transform: translateY(-14%);
+  /* Añade estas 3 líneas: */
+  line-height: 0;
+  font-size: 0;
+  display: block;
+  padding: 0px;
+  margin: 0px;
+}
+
+.create-card-title {
+  flex: 1;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #1d1c1d;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+}
+
+.create-workspace-button-bottom {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #611f69;
+  background-color: transparent;
+  border: 1.5px solid #611f69;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.create-workspace-button-bottom:hover {
+  background-color: #611f69;
+  color: #ffffff;
+}
+
+/* ===== LOADING STATE ===== */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1.5rem;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #f0f0f0;
+  border-top-color: #611f69;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 1.125rem;
+  color: #616061;
+  font-weight: 500;
+}
+
+/* ===== ERROR STATE ===== */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.error-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1d1c1d;
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  font-size: 1rem;
+  color: #e01e5a;
+  font-weight: 500;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  color: #868686;
+}
+
+.empty-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.empty-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1d1c1d;
+  margin-bottom: 0.75rem;
+}
+
+.empty-description {
+  font-size: 1.125rem;
+  color: #616061;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.empty-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #611f69;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.empty-action-button:hover {
+  background-color: #4a154b;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .home-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .slack-white-logo {
+    width: 100px;
+  }
+
+  .create-workspace-button-header {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .workspaces-card-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .workspaces-card-title {
+    font-size: 1.125rem;
+  }
+
+  .workspace-item {
+    padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .workspace-left {
+    width: 100%;
+  }
+
+  .workspace-button {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .create-workspace-card-bottom {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .create-card-title {
+    text-align: center;
+  }
+
+  .create-workspace-button-bottom {
+    width: 100%;
+  }
+
+  .create-workspace-illustration {
+    width: 150px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 0rem 2rem 1.5rem;
+  }
+  .home-header {
+    padding: 0rem;
+  }
+
+  .slack-white-logo {
+    width: 100px;
+  }
+
+  .create-workspace-button-header {
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+  }
+
+  .workspaces-card {
+    border-radius: 6px;
+  }
+
+  .workspaces-card-header {
+    padding: 1.25rem 1rem 0.875rem;
+  }
+
+  .workspaces-card-title {
+    font-size: 1.2rem;
+  }
+
+  .workspace-item {
+    padding: 1rem;
+  }
+
+  .workspace-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .workspace-name {
+    font-size: 1rem;
+  }
+
+  .workspace-button {
+    font-size: 1rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .create-workspace-card-bottom {
+    padding: 1.5rem 1rem;
+  }
+
+  .create-workspace-illustration {
+    width: 120px;
+    height: 80px;
+  }
+
+  .create-card-title {
+    font-size: 1rem;
+  }
+
+  .create-workspace-button-bottom {
+    font-size: 0.8125rem;
+    padding: 0.75rem 1.25rem;
+  }
+}

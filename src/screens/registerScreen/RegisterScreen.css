@@ -10,9 +10,11 @@
 
 .register-card {
   width: 100%;
-  max-width: 400px;
+  /* Aumentado max-width de 400px a 540px para desktop */
+  max-width: 540px;
   background: #ffffff;
-  padding: 3rem 2.5rem;
+  /* Aumentado padding horizontal de 2.5rem a 3.5rem para mejor proporción */
+  padding: 3rem 3.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
