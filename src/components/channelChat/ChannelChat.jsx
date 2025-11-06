@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import MessageList from "./MessageList";
 import useChannelMessage from "../../hooks/useChannelMessage";
+import "./ChannelChat.css";
 
-const ChannelChat = ({ workspace_id, channel_id }) => {
+const ChannelChat = ({ workspace_id, channel_id, channelName }) => {
   const { messages, createChannelMessage } = useChannelMessage();
   const [newMessage, setNewMessage] = useState("");
 
@@ -15,45 +16,24 @@ const ChannelChat = ({ workspace_id, channel_id }) => {
   };
 
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        borderRadius: "6px",
-        padding: "10px",
-        marginTop: "20px",
-        display: "flex",
-        flexDirection: "column",
-        height: "400px",
-      }}
-    >
-      <h3>Mensajes del canal</h3>
+    <div className="channel-chat-container">
+      <div className="channel-chat-header">
+        <h3 className="channel-chat-title"># {channelName}</h3>
+      </div>
 
-      {/* Lista de mensajes */}
-      <div style={{ flex: 1, overflowY: "auto", marginBottom: "10px" }}>
+      <div className="channel-chat-messages">
         <MessageList messages={messages} />
       </div>
 
-      {/* Input para enviar mensaje */}
-      <form
-        onSubmit={handleSendMessage}
-        style={{
-          display: "flex",
-          gap: "10px",
-          borderTop: "1px solid #ddd",
-          paddingTop: "10px",
-        }}
-      >
+      <form onSubmit={handleSendMessage} className="channel-chat-form">
         <input
           type="text"
           placeholder="Escribí tu mensaje..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          style={{ flex: 1, padding: "8px" }}
+          className="channel-chat-input"
         />
-        <button
-          type="submit"
-          style={{ padding: "8px 15px", cursor: "pointer" }}
-        >
+        <button type="submit" className="channel-chat-button">
           Enviar
         </button>
       </form>

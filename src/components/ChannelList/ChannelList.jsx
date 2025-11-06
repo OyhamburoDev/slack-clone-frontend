@@ -1,29 +1,43 @@
 import React from "react";
 import { useParams } from "react-router";
-import useChannels from "../../hooks/useChannels";
 
-const ChannelList = ({ onSelectChannel }) => {
+import "./ChannelList.css";
+
+const ChannelList = ({
+  onSelectChannel,
+  selectedChannel,
+  channels,
+  onCreateClick,
+}) => {
   const { workspace_id } = useParams();
-  const { channels } = useChannels();
 
   console.log({ channels });
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <h2>Canales</h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingBottom: "0.5rem",
+        }}
+      >
+        <h2 className="canal-title">Canales</h2>
+        <button onClick={onCreateClick} className="add-channel-button">
+          +
+        </button>
+      </div>
       {channels.map((elemento) => {
         return (
           <button
             key={elemento._id}
             onClick={() => onSelectChannel(elemento._id)}
-            style={{
-              padding: "8px",
-              margin: "5px 0",
-              cursor: "pointer",
-              textAlign: "left",
-            }}
+            className={`channel-item ${
+              elemento._id === selectedChannel ? "channel-item-active" : ""
+            }`}
           >
-            {elemento.name}
+            # {elemento.name}
           </button>
         );
       })}

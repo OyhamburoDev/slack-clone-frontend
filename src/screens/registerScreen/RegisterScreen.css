@@ -1,22 +1,27 @@
-.register-container {
+.container-register {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  justify-content: space-between;
+}
+
+.register-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-color: #ffffff;
-  padding: 2rem 1rem;
+  margin-top: 1rem;
+  flex: 1;
+  padding: 2rem 0;
+  justify-content: center;
+  min-height: 70vh;
 }
 
 .register-card {
   width: 100%;
-  /* Aumentado max-width de 400px a 540px para desktop */
-  max-width: 540px;
+  max-width: 480px;
   background: #ffffff;
-  /* Aumentado padding horizontal de 2.5rem a 3.5rem para mejor proporción */
-  padding: 3rem 3.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  margin: auto;
 }
 
 .register-logo {
@@ -26,31 +31,34 @@
 }
 
 .register-logo img {
-  width: 120px;
+  width: 125px;
   height: auto;
 }
 
 .register-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #1d1c1d;
   text-align: center;
-  margin-bottom: 1.5rem;
   line-height: 1.2;
+  margin-bottom: 1rem;
 }
 
 .register-subtitle {
-  font-size: 1.125rem;
-  color: #1d1c1d;
-  text-align: center;
+  font-size: 0.9375rem;
+  color: #616061;
+  font-weight: 500;
   margin-bottom: 2rem;
-  font-weight: 400;
+  text-align: center;
+  padding: 0 1rem;
 }
 
 .register-form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .form-group {
@@ -59,64 +67,56 @@
   gap: 0.5rem;
 }
 
-.form-label {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: #1d1c1d;
-  margin-bottom: 0.25rem;
-}
-
-.form-input {
+.form-input-register {
   width: 100%;
-  padding: 0.6875rem 0.75rem;
-  font-size: 1.125rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: #1d1c1d;
   background-color: #ffffff;
   border: 1px solid #868686;
-  border-radius: 4px;
-  box-sizing: border-box;
+  border-radius: 8px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.form-input:hover {
+.form-input-register:hover {
   border-color: #1d1c1d;
 }
 
-.form-input:focus {
+.form-input-register:focus {
   outline: none;
   border-color: #1264a3;
   box-shadow: 0 0 0 4px rgba(18, 100, 163, 0.1);
 }
 
-.submit-button {
+.submit-button-register {
   width: 100%;
-  padding: 0.6875rem 1.25rem;
-  font-size: 1.125rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #ffffff;
   background-color: #611f69;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.15s ease-in-out;
   margin-top: 0.5rem;
 }
 
-.submit-button:hover:not(:disabled) {
+.submit-button-register:hover:not(:disabled) {
   background-color: #4a154b;
 }
 
-.submit-button:disabled {
+.submit-button-register:disabled {
   background-color: #868686;
   cursor: not-allowed;
 }
 
-.submit-button.success {
+.submit-button-register.success {
   background-color: #007a5a;
 }
 
-.submit-button.success:hover {
+.submit-button-register.success:hover {
   background-color: #006644;
 }
 
@@ -145,6 +145,7 @@
   text-align: center;
   font-size: 0.9375rem;
   color: #616061;
+  padding: 0 1rem;
 }
 
 .register-footer a {
@@ -157,60 +158,167 @@
   text-decoration: underline;
 }
 
-/* 📱 MEDIA QUERIES PARA MÓVILES */
+.register-footers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  margin-top: auto;
+  width: 100%;
+}
 
-/* Para pantallas menores a 480px (móviles) */
-@media (max-width: 480px) {
+.register-footers-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  color: #616061;
+}
+
+/* ===== MEDIA QUERIES PARA MÓVILES ===== */
+
+@media (max-width: 768px) {
+  .container-register {
+    justify-content: flex-start;
+  }
+
   .register-container {
-    padding: 1rem 0.75rem;
+    margin-top: 0;
+    padding: 1rem 0;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
   }
 
   .register-card {
-    padding: 2rem 1.5rem;
-    box-shadow: none;
+    padding: 0 1rem;
+    max-width: 100%;
+    margin: auto 0;
+  }
+
+  .register-title {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .register-subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+    line-height: 1.4;
+  }
+
+  .register-form {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    gap: 1.5rem;
+  }
+
+  .form-input-register {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+
+  .submit-button-register {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .register-logo {
+    margin-bottom: 2rem;
+  }
+
+  .register-logo img {
+    width: 100px;
+  }
+
+  .register-footer {
+    margin-top: 2.5rem;
+    font-size: 0.875rem;
+    padding: 0 0.5rem;
+  }
+
+  .register-footers {
+    padding: 1.5rem 0;
+    background-color: #f8f8f8;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 1.5rem 0;
+    min-height: calc(100vh - 80px);
+  }
+
+  .register-card {
+    padding: 0 0.5rem;
+  }
+
+  .register-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .register-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
+
+  .register-form {
+    gap: 1.8rem;
+  }
+
+  .form-input-register {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+  }
+
+  .submit-button-register {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .register-logo {
+    margin-bottom: 2.5rem;
   }
 
   .register-logo img {
     width: 90px;
   }
 
-  .register-title {
-    font-size: 1.75rem; /* De 48px a 28px */
-    margin-bottom: 1rem;
-  }
-
-  .register-subtitle {
-    font-size: 0.9375rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .form-input {
-    font-size: 1rem;
-    padding: 0.625rem 0.875rem;
-  }
-
-  .submit-button {
-    font-size: 1rem;
-    padding: 0.625rem 1rem;
-  }
-
   .register-footer {
-    font-size: 0.875rem;
-    margin-top: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .register-footers-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .register-footers-links p {
+    margin: 0;
+    font-size: 0.8rem;
   }
 }
 
-/* Para pantallas muy pequeñas (menos de 360px) */
-@media (max-width: 360px) {
+/* Para tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .register-container {
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
   .register-card {
-    padding: 1.5rem 1rem;
+    max-width: 420px;
+    margin: auto 0;
   }
 
   .register-title {
-    font-size: 1.5rem;
-  }
-
-  .register-subtitle {
-    font-size: 0.875rem;
+    font-size: 2.2rem;
   }
 }

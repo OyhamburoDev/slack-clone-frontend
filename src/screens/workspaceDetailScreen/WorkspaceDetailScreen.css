@@ -1,0 +1,106 @@
+.workspace-detail-container {
+  background: linear-gradient(135deg, #4a154b 0%, #36184c 50%, #1a0b2e 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+.cards-container {
+  display: flex;
+
+  margin-top: 20px;
+}
+
+.ws-detail-title {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.icons-sidebar {
+  flex: 0 0 50px; /* ancho fijo para los iconos */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  min-height: 90vh;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.left-card {
+  flex: 0 0 350px; /* ancho fijo */
+  background-color: rgba(
+    53,
+    13,
+    54,
+    0.959
+  ); /* Hacemos el fondo un poco translúcido */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+.left-card-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.left-title-name {
+  border-bottom: 1px solid #4a1a4b;
+  padding-bottom: 1rem;
+}
+
+.left-card-footer {
+  border-top: 1px solid #4a1a4b;
+  padding: 0px;
+  margin-top: auto;
+}
+.footer-text {
+  color: #d1bdd6;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.invite-button {
+  width: 100%;
+  padding: 10px;
+  background: #4a4d57;
+  border: 1px solid #4a1a4b;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.invite-button:hover {
+  background: #5a5d67;
+}
+
+.right-card {
+  flex: 1; /* ocupa el resto del espacio */
+  background-color: rgba(
+    26,
+    29,
+    33,
+    0.8
+  ); /* Hacemos el fondo un poco translúcido */
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.empty-chat-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #ccc;
+}

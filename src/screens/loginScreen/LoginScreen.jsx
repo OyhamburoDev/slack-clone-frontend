@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import useFetch from "../../hooks/useFetch.jsx";
 import useForm from "../../hooks/useForm.jsx";
@@ -49,71 +51,75 @@ export const LoginScreen = () => {
   });
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="login-logo">
-          <img src={slackLogo} alt="Slack logo" />
-        </div>
-
-        <h1 className="login-title">Iniciar sesión en Slack</h1>
-        <p className="login-subtitle">
-          Te sugerimos que uses la{" "}
-          <strong>
-            dirección de correo electrónico que usas en el trabajo.
-          </strong>
-        </p>
-
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="form-group">
-            <label htmlFor={FORM_FIELDS.EMAIL} className="form-label">
-              Correo electrónico
-            </label>
-            <input
-              name={FORM_FIELDS.EMAIL}
-              id={FORM_FIELDS.EMAIL}
-              type="email"
-              onChange={handleInputChange}
-              className="form-input"
-              placeholder="nombre@empresa.com"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor={FORM_FIELDS.PASSWORD} className="form-label">
-              Contraseña
-            </label>
-            <input
-              name={FORM_FIELDS.PASSWORD}
-              id={FORM_FIELDS.PASSWORD}
-              type="password"
-              onChange={handleInputChange}
-              className="form-input"
-              placeholder="Ingresa tu contraseña"
-            />
+    <div className="container-login">
+      <div className="login-container">
+        <div className="login-card">
+          <div className="login-logo">
+            <img src={slackLogo} alt="Slack logo" />
           </div>
 
-          {!response ? (
-            <button type="submit" disabled={loading} className="submit-button">
-              {loading
-                ? "Iniciando sesión..."
-                : "Iniciar sesión con correo electrónico"}
-            </button>
-          ) : (
-            <>
+          <h1 className="login-title">Iniciar sesión en Slack</h1>
+          <p className="login-subtitle">
+            Te sugerimos que uses la dirección de correo electrónico que usas en
+            el trabajo.
+          </p>
+
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="form-group">
+              <input
+                name={FORM_FIELDS.EMAIL}
+                id={FORM_FIELDS.EMAIL}
+                type="email"
+                onChange={handleInputChange}
+                className="form-input-login"
+                placeholder="nombre@empresa.com"
+              />
+            </div>
+            <div className="form-group">
+              <input
+                name={FORM_FIELDS.PASSWORD}
+                id={FORM_FIELDS.PASSWORD}
+                type="password"
+                onChange={handleInputChange}
+                className="form-input-login"
+                placeholder="Ingresa tu contraseña"
+              />
+            </div>
+
+            {!response ? (
               <button
                 type="submit"
-                disabled={true}
-                className="submit-button success"
+                disabled={loading}
+                className="submit-button-login"
               >
-                Sesión Iniciada
+                {loading
+                  ? "Iniciando sesión..."
+                  : "Iniciar sesión con correo electrónico"}
               </button>
-              <div className="message success">{response.message}</div>
-            </>
-          )}
-          {error && <div className="message error">{error.message}</div>}
-        </form>
+            ) : (
+              <>
+                <button
+                  type="submit"
+                  disabled={true}
+                  className="submit-button-login success"
+                >
+                  Sesión Iniciada
+                </button>
+                <div className="message success">{response.message}</div>
+              </>
+            )}
+            {error && <div className="message error">{error.message}</div>}
+          </form>
 
-        <div className="login-footer">
-          ¿Eres nuevo en Slack? <a href="/register">Crea una cuenta</a>
+          <div className="login-footer">
+            ¿Eres nuevo en Slack? <a href="/register">Crea una cuenta</a>
+          </div>
+        </div>
+      </div>
+
+      <div className="login-footers">
+        <div className="login-footers-links">
+          <p>Privacidad y términos</p> <p>Contactarnos</p> <p>Cambiar región</p>
         </div>
       </div>
     </div>
