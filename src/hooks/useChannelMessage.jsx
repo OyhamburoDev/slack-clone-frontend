@@ -43,6 +43,7 @@ function useChannelMessage() {
     error,
     messages,
     createChannelMessage,
+    loadMessagesList,
   };
 }
 

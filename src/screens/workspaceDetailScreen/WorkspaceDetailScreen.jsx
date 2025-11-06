@@ -21,9 +21,11 @@ const WorkspaceDetailScreen = () => {
   const [inviteEmail, setInviteEmail] = useState("");
   const { sendRequest, response, error, loading } = useFetch();
   const { createChannel, channels } = useChannels();
+
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
   const [isCreateChannelModalOpen, setIsCreateChannelModalOpen] =
     useState(false);
+
   useEffect(() => {
     sendRequest(async () => {
       return await getWorkspaceById(workspace_id);

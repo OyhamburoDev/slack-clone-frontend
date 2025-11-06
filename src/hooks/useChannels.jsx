@@ -8,7 +8,6 @@ import useFetch from "./useFetch";
 
 function useChannels() {
   const { loading, response, error, sendRequest } = useFetch();
-
   const { workspace_id } = useParams();
   const [channels, setChannels] = useState([]);
 
@@ -20,7 +19,21 @@ function useChannels() {
 
   async function createChannel(name) {
     sendRequest(async () => {
-      return createNewChannel(workspace_id, name);
+      const createResponse = await createNewChannel(workspace_id, name);
+
+      if (!createResponse.ok) {
+        throw new Error("Error al crear canal");
+      }
+
+      // Si se creó bien, pedimos la nueva lista
+      const listResponse = await getChannelListByWorkspaceId(workspace_id);
+
+      if (!listResponse.ok) {
+        throw new Error("Error al obtener la lista de canales");
+      }
+
+      // ✅ devolvemos la respuesta final
+      return listResponse;
     });
   }
 
@@ -28,13 +41,14 @@ function useChannels() {
     loadChannelList();
   }, [workspace_id]);
 
-  //Para que esto funcione correctamente, es importante que el backend siempre responda con la misma firma
   useEffect(() => {
     if (response && response.ok) {
-      //Porque si se actualiza la ultima respuesta del servidor, quiero que se actulice mi estado
-      setChannels(response.data.channels);
+      if (response.data && response.data.channels) {
+        setChannels(response.data.channels);
+      }
     }
   }, [response]);
+
   return {
     loading,
     response,

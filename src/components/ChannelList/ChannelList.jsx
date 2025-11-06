@@ -28,19 +28,20 @@ const ChannelList = ({
           +
         </button>
       </div>
-      {channels.map((elemento) => {
-        return (
-          <button
-            key={elemento._id}
-            onClick={() => onSelectChannel(elemento._id)}
-            className={`channel-item ${
-              elemento._id === selectedChannel ? "channel-item-active" : ""
-            }`}
-          >
-            # {elemento.name}
-          </button>
-        );
-      })}
+      {Array.isArray(channels) &&
+        channels.map((elemento) => {
+          return (
+            <button
+              key={elemento._id}
+              onClick={() => onSelectChannel(elemento._id)}
+              className={`channel-item ${
+                elemento._id === selectedChannel ? "channel-item-active" : ""
+              }`}
+            >
+              # {elemento.name}
+            </button>
+          );
+        })}
     </div>
   );
 };
