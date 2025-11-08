@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import MessageList from "./MessageList";
 import useChannelMessage from "../../hooks/useChannelMessage";
 import "./ChannelChat.css";
+import { useParams } from "react-router";
 
-const ChannelChat = ({ workspace_id, channel_id, channelName }) => {
+const ChannelChat = ({ channelName }) => {
+  const { workspace_id, channel_id } = useParams();
+  console.log("Holaa");
   const { messages, createChannelMessage, loadMessagesList } =
     useChannelMessage();
+  console.log(messages);
   const [newMessage, setNewMessage] = useState("");
 
   const handleSendMessage = async (e) => {
@@ -15,16 +19,16 @@ const ChannelChat = ({ workspace_id, channel_id, channelName }) => {
       setNewMessage("");
     }
   };
-  useEffect(() => {
-    // Definimos una función async dentro del useEffect
-    const fetchMessages = async () => {
-      if (workspace_id && channel_id) {
-        await loadMessagesList(workspace_id, channel_id);
-      }
-    };
+  // useEffect(() => {
+  //   // Definimos una función async dentro del useEffect
+  //   const fetchMessages = async () => {
+  //     if (workspace_id && channel_id) {
+  //       await loadMessagesList(workspace_id, channel_id);
+  //     }
+  //   };
 
-    fetchMessages(); // Llamamos la función
-  }, [workspace_id, channel_id]);
+  //   fetchMessages(); // Llamamos la función
+  // }, [workspace_id, channel_id]);
 
   return (
     <div className="channel-chat-container">

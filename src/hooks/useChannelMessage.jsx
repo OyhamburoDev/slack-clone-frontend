@@ -13,7 +13,7 @@ function useChannelMessage() {
 
   async function loadMessagesList(workspace_id, channel_id) {
     sendRequest(async () => {
-      return getChannelMessageListByChannelId(workspace_id, channel_id);
+      return await getChannelMessageListByChannelId(workspace_id, channel_id);
     });
   }
 
@@ -26,12 +26,14 @@ function useChannelMessage() {
   }
 
   useEffect(() => {
+    console.log(workspace_id, channel_id);
     if (workspace_id && channel_id) {
       loadMessagesList(workspace_id, channel_id);
     }
   }, [workspace_id, channel_id]);
 
   useEffect(() => {
+    console.log(response);
     if (response && response.ok && response.data && response.data.messages) {
       setMessages(response.data.messages);
     }

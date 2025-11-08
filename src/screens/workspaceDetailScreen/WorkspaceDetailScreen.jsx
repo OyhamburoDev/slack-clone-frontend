@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useNavigation, useParams } from "react-router";
 import useFetch from "../../hooks/useFetch";
 import {
   getWorkspaceById,
@@ -21,6 +21,7 @@ const WorkspaceDetailScreen = () => {
   const [inviteEmail, setInviteEmail] = useState("");
   const { sendRequest, response, error, loading } = useFetch();
   const { createChannel, channels } = useChannels();
+  const navigate = useNavigate();
 
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
   const [isCreateChannelModalOpen, setIsCreateChannelModalOpen] =
@@ -91,7 +92,10 @@ const WorkspaceDetailScreen = () => {
 
             <div style={{ marginTop: "20px" }}>
               <ChannelList
-                onSelectChannel={(id) => setSelectedChannel(id)}
+                onSelectChannel={(id) => {
+                  setSelectedChannel(id);
+                  navigate(`/workspace/${workspace_id}/${id}`);
+                }}
                 selectedChannel={selectedChannel}
                 channels={channels}
                 onCreateClick={() => setIsCreateChannelModalOpen(true)}
