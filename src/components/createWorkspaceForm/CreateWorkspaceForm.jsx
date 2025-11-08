@@ -3,12 +3,10 @@ import useForm from "../../hooks/useForm";
 import useFetch from "../../hooks/useFetch";
 import { createWorkspace } from "../../services/workspaceService";
 import { useNavigate } from "react-router";
-import slackLogo from "../../assets/images/slack-logo.png";
 import "./CreateWorkspaceForm.css";
 
-const CreateWorkspaceForm = ({ onCreateWorkspace }) => {
+const CreateWorkspaceForm = () => {
   const navigate = useNavigate();
-  const [workspaceName, setWorkspaceName] = useState("");
   const { response, loading, error, sendRequest } = useFetch();
 
   const initial_state = {

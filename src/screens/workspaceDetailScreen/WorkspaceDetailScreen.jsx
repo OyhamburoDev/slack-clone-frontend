@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  useNavigate,
-  useNavigation,
-  useParams,
-  useLocation,
-} from "react-router";
+import { useNavigate, useParams, useLocation } from "react-router";
 import useFetch from "../../hooks/useFetch";
 import {
   getWorkspaceById,
   inviteMember,
 } from "../../services/workspaceService";
-// import InviteUserForm from "../../Components/InviteUserForm/InviteUserForm";
 import ChannelList from "../../components/ChannelList/ChannelList";
 import useChannels from "../../hooks/useChannels";
 import ChannelChat from "../../components/channelChat/ChannelChat";
-import MessageList from "../../components/channelChat/MessageList";
 import "./WorkspaceDetailScreen.css";
 import Modal from "../../components/modals/Modal";
 import CreateWorkspaceForm from "../../components/createWorkspaceForm/CreateWorkspaceForm";
@@ -26,7 +19,6 @@ const WorkspaceDetailScreen = () => {
   const [channelName, setChannelName] = useState("");
   const [selectedChannel, setSelectedChannel] = useState(null);
   const [inviteEmail, setInviteEmail] = useState("");
-  const [workspaceName, setWorkspaceName] = useState("");
   const { sendRequest, response, error, loading } = useFetch();
   const { createChannel, channels } = useChannels();
   const navigate = useNavigate();
@@ -37,7 +29,6 @@ const WorkspaceDetailScreen = () => {
 
   useEffect(() => {
     if (!isCreating && workspace_id) {
-      // ← Usás la variable que ya existe
       sendRequest(async () => {
         return await getWorkspaceById(workspace_id);
       });
@@ -50,7 +41,7 @@ const WorkspaceDetailScreen = () => {
     e.preventDefault();
     if (channelName.trim()) {
       createChannel(channelName);
-      setChannelName(""); // Limpiar el input
+      setChannelName("");
     }
   };
 
@@ -66,24 +57,13 @@ const WorkspaceDetailScreen = () => {
       }
     }
   };
-  // ============ NUEVO: Función para crear workspace ============
-  const handleCreateWorkspace = async (e) => {
-    e.preventDefault();
-    if (workspaceName.trim()) {
-      // Acá llamarías a tu servicio de crear workspace
-      // const newWorkspace = await createWorkspace(workspaceName);
-      // navigate(`/workspace/${newWorkspace.id}`);
-      console.log("Crear workspace:", workspaceName);
-    }
-  };
-  // ==============================================================
 
   return (
     <div className="workspace-detail-container">
       <div className="cards-container">
-        <div className="icons-sidebar">{/* acá van tus iconos */}</div>
+        <div className="icons-sidebar">{/* acá van los iconos */}</div>
 
-        {/* ============ MODIFICADO: Left card se muestra vacía si isCreating ============ */}
+        {/* Left card se muestra vacía si isCreating  */}
         <div className="card left-card">
           {!isCreating && (
             <>
@@ -121,15 +101,12 @@ const WorkspaceDetailScreen = () => {
             </>
           )}
         </div>
-        {/* ============================================================================== */}
 
-        {/* ============ MODIFICADO: Right card muestra formulario si isCreating ============ */}
+        {/*  Right card muestra formulario si isCreating */}
         <div className="card right-card">
           {isCreating ? (
-            // ============ NUEVO: Formulario de creación de workspace ============
-            <CreateWorkspaceForm onCreateWorkspace={handleCreateWorkspace} />
-          ) : // =====================================================================
-          selectedChannel ? (
+            <CreateWorkspaceForm />
+          ) : selectedChannel ? (
             <ChannelChat
               key={selectedChannel}
               workspace_id={workspace_id}
@@ -148,7 +125,6 @@ const WorkspaceDetailScreen = () => {
             </div>
           )}
         </div>
-        {/* ================================================================================= */}
       </div>
 
       <Modal
