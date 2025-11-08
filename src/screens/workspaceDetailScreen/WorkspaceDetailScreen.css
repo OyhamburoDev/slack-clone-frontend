@@ -3,9 +3,9 @@
   min-height: 100vh;
   padding: 20px;
 }
+
 .cards-container {
   display: flex;
-
   margin-top: 20px;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .icons-sidebar {
-  flex: 0 0 50px; /* ancho fijo para los iconos */
+  flex: 0 0 50px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -25,7 +25,7 @@
   background: rgba(255, 255, 255, 0.15);
   padding: 20px;
   backdrop-filter: blur(10px);
-  min-height: 90vh;
+  height: 90vh; /* Cambio de min-height a height fija */
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
@@ -33,19 +33,15 @@
 }
 
 .left-card {
-  flex: 0 0 350px; /* ancho fijo */
-  background-color: rgba(
-    53,
-    13,
-    54,
-    0.959
-  ); /* Hacemos el fondo un poco translúcido */
+  flex: 0 0 350px;
+  background-color: rgba(53, 13, 54, 0.959);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
 }
+
 .left-card-content {
   flex: 1;
   overflow-y: auto;
@@ -61,6 +57,7 @@
   padding: 0px;
   margin-top: auto;
 }
+
 .footer-text {
   color: #d1bdd6;
   font-size: 1rem;
@@ -85,16 +82,14 @@
 }
 
 .right-card {
-  flex: 1; /* ocupa el resto del espacio */
-  background-color: rgba(
-    26,
-    29,
-    33,
-    0.8
-  ); /* Hacemos el fondo un poco translúcido */
+  flex: 1;
+  background-color: rgba(26, 29, 33, 0.8);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Importante para que el chat no se desborde */
 }
 
 .empty-chat-message {
@@ -103,4 +98,134 @@
   justify-content: center;
   height: 100%;
   color: #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablets (landscape y portrait) */
+@media (max-width: 1024px) {
+  .workspace-detail-container {
+    padding: 15px;
+  }
+
+  .left-card {
+    flex: 0 0 280px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .ws-detail-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Tablets pequeñas y móviles grandes */
+@media (max-width: 768px) {
+  .workspace-detail-container {
+    padding: 10px;
+  }
+
+  .cards-container {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .icons-sidebar {
+    display: none; /* Ocultamos los iconos en mobile */
+  }
+
+  .card {
+    min-height: auto;
+    border-radius: 10px !important;
+    margin-bottom: 10px;
+  }
+
+  .left-card {
+    flex: 1;
+    border-radius: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 70vh;
+  }
+
+  .right-card {
+    flex: 1;
+    border-radius: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 75vh;
+  }
+
+  .left-card-footer {
+    padding: 10px 0;
+  }
+
+  .footer-text {
+    font-size: 0.9rem;
+  }
+
+  .invite-button {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  .workspace-detail-container {
+    padding: 8px;
+  }
+
+  .card {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+
+  .ws-detail-title {
+    font-size: 1rem;
+  }
+
+  .left-card {
+    max-height: 60vh;
+  }
+
+  .right-card {
+    min-height: 70vh;
+  }
+
+  .footer-text {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .invite-button {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .empty-chat-message {
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .workspace-detail-container {
+    padding: 5px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  .ws-detail-title {
+    font-size: 0.95rem;
+  }
+
+  .left-card-content {
+    padding: 0;
+  }
 }

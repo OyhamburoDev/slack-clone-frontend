@@ -7,7 +7,7 @@ import slackLogo from "../../assets/images/slack-logo.png";
 import "./CreateWorkspaceForm.css";
 
 const CreateWorkspaceForm = ({ onCreateWorkspace }) => {
-  const navigate = useNavigate(); // Agregá esto si no lo tenés
+  const navigate = useNavigate();
   const [workspaceName, setWorkspaceName] = useState("");
   const { response, loading, error, sendRequest } = useFetch();
 
@@ -27,34 +27,35 @@ const CreateWorkspaceForm = ({ onCreateWorkspace }) => {
   });
 
   useEffect(() => {
-    console.log("Response completa:", response); // ← Agregá esta línea
-
     if (response && response.ok && response.data && response.data.workspace) {
       const workspaceId = response.data.workspace._id;
-      console.log("Navegando a workspace:", workspaceId);
       navigate(`/workspace/${workspaceId}`);
     }
   }, [response, navigate]);
 
   return (
     <div className="create-workspace-form">
-      <h2>Crear nuevo workspace</h2>
+      <h2>¿Cómo quieres que se llame tu espacio de trabajo de Slack?</h2>
       <p className="form-description">
-        Dale un nombre a tu espacio de trabajo para comenzar
+        Elige algo que tu equipo pueda reconocer, como el nombre de tu empresa o
+        equipo.
       </p>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="workspace_name">Nombre del espacio de trabajo</label>
+        <div className="input-wrapper">
           <input
             type="text"
             name="workspace_name"
             id="workspace_name"
+            placeholder="P. ej.: Empresa 123 o Ficciones S. A."
             value={form_state.workspace_name}
             onChange={handleInputChange}
+            maxLength={50}
           />
         </div>
-        {error && <span style={{ color: "red" }}>{error.message}</span>}
-        <button>Crear espacio de trabajo</button>
+        {error && <span className="error-message">{error.message}</span>}
+        <button type="submit" className="submit-button">
+          Siguiente
+        </button>
       </form>
     </div>
   );

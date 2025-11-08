@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 0; /* Importante para que funcione el overflow */
 }
 
 .channel-chat-header {
   padding-bottom: 15px;
   border-bottom: 1px solid #444;
 }
+
 .channel-chat-title {
   color: white;
 }
@@ -41,4 +43,90 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.channel-chat-button:hover {
+  background: #0e5189;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .channel-chat-header {
+    padding-bottom: 12px;
+  }
+
+  .channel-chat-title {
+    font-size: 1.1rem;
+  }
+
+  .channel-chat-messages {
+    padding: 12px 0;
+  }
+
+  .channel-chat-form {
+    gap: 8px;
+    padding-top: 12px;
+  }
+
+  .channel-chat-input {
+    padding: 9px;
+    font-size: 14px;
+  }
+
+  .channel-chat-button {
+    padding: 9px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  .channel-chat-header {
+    padding-bottom: 10px;
+  }
+
+  .channel-chat-title {
+    font-size: 1rem;
+  }
+
+  .channel-chat-messages {
+    padding: 10px 0;
+  }
+
+  .channel-chat-form {
+    gap: 6px;
+    padding-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .channel-chat-input {
+    padding: 8px;
+    font-size: 13px;
+    min-width: 100%;
+  }
+
+  .channel-chat-button {
+    padding: 8px 14px;
+    font-size: 13px;
+    width: 100%;
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .channel-chat-title {
+    font-size: 0.95rem;
+  }
+
+  .channel-chat-input {
+    padding: 7px;
+    font-size: 12px;
+  }
+
+  .channel-chat-button {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
 }
