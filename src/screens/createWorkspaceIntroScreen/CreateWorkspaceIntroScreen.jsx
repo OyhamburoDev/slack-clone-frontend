@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import slackLogo from "../../assets/images/slack-logo.png";
+import "./CreateWorkspaceIntroScreen.css";
 
 const CreateWorkspaceIntroScreen = () => {
   const navigate = useNavigate();
@@ -9,11 +11,23 @@ const CreateWorkspaceIntroScreen = () => {
   };
 
   return (
-    <div className="intro-container">
-      <img src="/logo-slack.png" alt="Slack logo" className="logo" />
-      <h2>Comenzá tu nuevo espacio de trabajo</h2>
-      <p>Creá un lugar para vos y tu equipo en segundos.</p>
-      <button onClick={handleContinue}>Crear espacio de trabajo</button>
+    <div className="createWorkspace-container">
+      <div className="createWorkspace-logo">
+        <img src={slackLogo} alt="Slack logo" />
+      </div>
+      <div className="createWorkspace-title-subtitle">
+        <h2 className="createWorkspaceIntro-title">¡Hola de nuevo!</h2>
+        <p className="createWorkspaceIntro-subtitle">
+          Crear un nuevo espacio de trabajo
+        </p>
+      </div>
+      <div className="createWorkspaceInto-cnt-button">
+        <button className="createWorkspaceInto-button" onClick={handleContinue}>
+          <span className="button-icon">+</span>
+          <span className="button-text">Crea un nuevo espacio de trabajo</span>
+          <span className="button-arrow">→</span>
+        </button>
+      </div>
     </div>
   );
 };

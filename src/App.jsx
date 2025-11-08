@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router";
 import { LoginScreen } from "./screens/loginScreen/LoginScreen";
 import RegisterScreen from "./screens/registerScreen/RegisterScreen";
 import HomeScreen from "./screens/homeScreen/HomeScreen";
-import CreateWorkspaceScreen from "./screens/createWorkspaceScreen/CreateWorkspaceScreen";
 import WorkspaceDetailScreen from "./screens/workspaceDetailScreen/WorkspaceDetailScreen";
 import CreateWorkspaceIntroScreen from "./screens/createWorkspaceIntroScreen/CreateWorkspaceIntroScreen";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";

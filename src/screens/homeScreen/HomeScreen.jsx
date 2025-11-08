@@ -155,7 +155,7 @@ const HomeScreen = () => {
                   ¿Quieres usar Slack con otro equipo?
                 </h2>
                 <Link
-                  to="/workspace/new"
+                  to="/workspace/create"
                   className="create-workspace-button-bottom"
                 >
                   CREAR UN NUEVO ESPACIO DE TRABAJO
