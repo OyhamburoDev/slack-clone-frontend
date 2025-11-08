@@ -5,6 +5,8 @@ import RegisterScreen from "./screens/registerScreen/RegisterScreen";
 import HomeScreen from "./screens/homeScreen/HomeScreen";
 import CreateWorkspaceScreen from "./screens/createWorkspaceScreen/CreateWorkspaceScreen";
 import WorkspaceDetailScreen from "./screens/workspaceDetailScreen/WorkspaceDetailScreen";
+import CreateWorkspaceIntroScreen from "./screens/createWorkspaceIntroScreen/CreateWorkspaceIntroScreen";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 
 function App() {
   return (
@@ -12,15 +14,45 @@ function App() {
       <Route path="/" element={<LoginScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
-      <Route path="/home" element={<HomeScreen />} />
-      <Route path="/workspace/new" element={<CreateWorkspaceScreen />} />
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <HomeScreen />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/workspace/create"
+        element={
+          <ProtectedRoute>
+            <CreateWorkspaceIntroScreen />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/workspace/new"
+        element={
+          <ProtectedRoute>
+            <WorkspaceDetailScreen />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/workspace/:workspace_id"
-        element={<WorkspaceDetailScreen />}
+        element={
+          <ProtectedRoute>
+            <WorkspaceDetailScreen />
+          </ProtectedRoute>
+        }
       />
       <Route
         path="/workspace/:workspace_id/:channel_id"
-        element={<WorkspaceDetailScreen />}
+        element={
+          <ProtectedRoute>
+            <WorkspaceDetailScreen />
+          </ProtectedRoute>
+        }
       />
     </Routes>
   );

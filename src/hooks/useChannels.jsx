@@ -38,7 +38,10 @@ function useChannels() {
   }
 
   useEffect(() => {
-    loadChannelList();
+    // Solo cargar canales si workspace_id existe y no es "new"
+    if (workspace_id && workspace_id !== "new") {
+      loadChannelList();
+    }
   }, [workspace_id]);
 
   useEffect(() => {

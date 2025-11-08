@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useNavigation, useParams } from "react-router";
+import {
+  useNavigate,
+  useNavigation,
+  useParams,
+  useLocation,
+} from "react-router";
 import useFetch from "../../hooks/useFetch";
 import {
   getWorkspaceById,
@@ -8,17 +13,20 @@ import {
 // import InviteUserForm from "../../Components/InviteUserForm/InviteUserForm";
 import ChannelList from "../../components/ChannelList/ChannelList";
 import useChannels from "../../hooks/useChannels";
-
 import ChannelChat from "../../components/channelChat/ChannelChat";
 import MessageList from "../../components/channelChat/MessageList";
 import "./WorkspaceDetailScreen.css";
 import Modal from "../../components/modals/Modal";
+import CreateWorkspaceForm from "../../components/createWorkspaceForm/CreateWorkspaceForm";
 
 const WorkspaceDetailScreen = () => {
   const { workspace_id } = useParams();
+  const location = useLocation();
+  const isCreating = location.pathname === "/workspace/new";
   const [channelName, setChannelName] = useState("");
   const [selectedChannel, setSelectedChannel] = useState(null);
   const [inviteEmail, setInviteEmail] = useState("");
+  const [workspaceName, setWorkspaceName] = useState("");
   const { sendRequest, response, error, loading } = useFetch();
   const { createChannel, channels } = useChannels();
   const navigate = useNavigate();
@@ -28,10 +36,13 @@ const WorkspaceDetailScreen = () => {
     useState(false);
 
   useEffect(() => {
-    sendRequest(async () => {
-      return await getWorkspaceById(workspace_id);
-    });
-  }, [workspace_id]);
+    if (!isCreating && workspace_id) {
+      // ← Usás la variable que ya existe
+      sendRequest(async () => {
+        return await getWorkspaceById(workspace_id);
+      });
+    }
+  }, [workspace_id, isCreating]);
 
   console.log("response:", response);
 
@@ -55,67 +66,70 @@ const WorkspaceDetailScreen = () => {
       }
     }
   };
+  // ============ NUEVO: Función para crear workspace ============
+  const handleCreateWorkspace = async (e) => {
+    e.preventDefault();
+    if (workspaceName.trim()) {
+      // Acá llamarías a tu servicio de crear workspace
+      // const newWorkspace = await createWorkspace(workspaceName);
+      // navigate(`/workspace/${newWorkspace.id}`);
+      console.log("Crear workspace:", workspaceName);
+    }
+  };
+  // ==============================================================
 
   return (
     <div className="workspace-detail-container">
       <div className="cards-container">
         <div className="icons-sidebar">{/* acá van tus iconos */}</div>
 
+        {/* ============ MODIFICADO: Left card se muestra vacía si isCreating ============ */}
         <div className="card left-card">
-          <div className="left-card-content">
-            <div className="left-title-name">
-              {response && (
-                <h2 className="ws-detail-title">
-                  {response.data.workspace.name}
-                </h2>
-              )}
-            </div>
+          {!isCreating && (
+            <>
+              <div className="left-card-content">
+                <div className="left-title-name">
+                  {response && (
+                    <h2 className="ws-detail-title">
+                      {response.data.workspace.name}
+                    </h2>
+                  )}
+                </div>
 
-            {/* <div>
-              <h3>Crear nuevo canal</h3>
-              <form onSubmit={handleCreateChannel}>
-                <input
-                  type="text"
-                  placeholder="Nombre del canal"
-                  value={channelName}
-                  onChange={(e) => setChannelName(e.target.value)}
-                  style={{ padding: "8px", marginRight: "10px" }}
-                />
+                <div style={{ marginTop: "20px" }}>
+                  <ChannelList
+                    onSelectChannel={(id) => {
+                      setSelectedChannel(id);
+                      navigate(`/workspace/${workspace_id}/${id}`);
+                    }}
+                    selectedChannel={selectedChannel}
+                    channels={channels}
+                    onCreateClick={() => setIsCreateChannelModalOpen(true)}
+                  />
+                </div>
+              </div>
+
+              <div className="left-card-footer">
+                <p className="footer-text">Slack es mejor si se combina.</p>
                 <button
-                  type="submit"
-                  style={{ padding: "8px 15px", cursor: "pointer" }}
+                  className="invite-button"
+                  onClick={() => setIsInviteModalOpen(true)}
                 >
-                  Crear Canal
+                  Invita a compañeros de equipo
                 </button>
-              </form>
-            </div> */}
-
-            <div style={{ marginTop: "20px" }}>
-              <ChannelList
-                onSelectChannel={(id) => {
-                  setSelectedChannel(id);
-                  navigate(`/workspace/${workspace_id}/${id}`);
-                }}
-                selectedChannel={selectedChannel}
-                channels={channels}
-                onCreateClick={() => setIsCreateChannelModalOpen(true)}
-              />
-            </div>
-          </div>
-
-          <div className="left-card-footer">
-            <p className="footer-text">Slack es mejor si se combina.</p>
-            <button
-              className="invite-button"
-              onClick={() => setIsInviteModalOpen(true)}
-            >
-              Invita a compañeros de equipo
-            </button>
-          </div>
+              </div>
+            </>
+          )}
         </div>
+        {/* ============================================================================== */}
 
+        {/* ============ MODIFICADO: Right card muestra formulario si isCreating ============ */}
         <div className="card right-card">
-          {selectedChannel ? (
+          {isCreating ? (
+            // ============ NUEVO: Formulario de creación de workspace ============
+            <CreateWorkspaceForm onCreateWorkspace={handleCreateWorkspace} />
+          ) : // =====================================================================
+          selectedChannel ? (
             <ChannelChat
               key={selectedChannel}
               workspace_id={workspace_id}
@@ -134,6 +148,7 @@ const WorkspaceDetailScreen = () => {
             </div>
           )}
         </div>
+        {/* ================================================================================= */}
       </div>
 
       <Modal
@@ -154,6 +169,7 @@ const WorkspaceDetailScreen = () => {
           </button>
         </form>
       </Modal>
+
       <Modal
         isOpen={isCreateChannelModalOpen}
         onClose={() => setIsCreateChannelModalOpen(false)}
@@ -175,5 +191,4 @@ const WorkspaceDetailScreen = () => {
     </div>
   );
 };
-
 export default WorkspaceDetailScreen;

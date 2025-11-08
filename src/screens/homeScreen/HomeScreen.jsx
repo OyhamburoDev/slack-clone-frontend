@@ -55,7 +55,7 @@ const HomeScreen = () => {
           alt="Slack logo"
           className="slack-white-logo"
         />
-        <Link to="/workspace/new" className="create-workspace-button-header">
+        <Link to="/workspace/create" className="create-workspace-button-header">
           Crear un nuevo espacio de trabajo
         </Link>
       </div>
