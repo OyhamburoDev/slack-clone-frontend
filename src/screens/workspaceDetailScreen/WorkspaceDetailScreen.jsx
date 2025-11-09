@@ -42,6 +42,7 @@ const WorkspaceDetailScreen = () => {
     if (channelName.trim()) {
       createChannel(channelName);
       setChannelName("");
+      setIsCreateChannelModalOpen(false);
     }
   };
 
@@ -52,6 +53,7 @@ const WorkspaceDetailScreen = () => {
       if (result.ok) {
         alert("Invitación enviada!");
         setInviteEmail("");
+        setIsInviteModalOpen(false);
       } else {
         alert("Error: " + result.message);
       }
