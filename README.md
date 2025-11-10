@@ -6,7 +6,7 @@ Frontend de un clon de Slack desarrollado como proyecto final para UTN. Aplicaci
 
 ## 🌐 Demo en Vivo
 
-🔗 **[Ver Demo](https://tu-proyecto-frontend.vercel.app)**
+🔗 **[Ver Demo](https://slackapp-utn.vercel.app)**
 
 ## 📸 Screenshots
 
@@ -25,10 +25,6 @@ Frontend de un clon de Slack desarrollado como proyecto final para UTN. Aplicaci
 ### 📢 Crear Canal
 
 ![Crear Canal](./screenshots/crear-canal.png)
-
-> **Opcional:** Podés agregar un GIF animado mostrando el flujo completo
->
-> ![Demo del flujo completo](./screenshots/demo.gif)
 
 ## ✨ Características Principales
 
@@ -66,9 +62,11 @@ slack-clone-frontend/
 │   │   ├── Channel/      # Componentes de canales
 │   │   └── Chat/         # Componentes de mensajería
 │   ├── hooks/            # Custom hooks reutilizables
-│   │   ├── useForm.js   # Manejo de formularios
-│   │   ├── useFetch.js  # Peticiones HTTP con manejo de estados
-│   │   └── ...          # Otros hooks personalizados
+│   │   ├── useForm.js           # Manejo de formularios
+│   │   ├── useFetch.js          # Peticiones HTTP con manejo de estados
+│   │   ├── useChannels.js       # Lógica de gestión de canales
+│   │   ├── useChannelMessage.js # Lógica de mensajes de canal
+│   │   └── ...                  # Otros hooks personalizados
 │   ├── pages/            # Páginas/Vistas principales
 │   │   ├── LoginPage.jsx
 │   │   ├── RegisterPage.jsx
@@ -113,6 +111,8 @@ const { formState, handleChange, handleReset } = useForm({
 - Validación en tiempo real
 - Reset de formularios
 
+---
+
 ### `useFetch`
 
 Hook para manejar peticiones HTTP con estados automáticos:
@@ -130,6 +130,42 @@ fetchData(authService.login, { email, password });
 - Manejo de errores centralizado
 - Response handling
 - Token management
+
+---
+
+### `useChannels`
+
+Hook para gestionar la lógica de canales en un workspace:
+
+```javascript
+const { channels, loading, error, fetchChannels, createChannel } =
+  useChannels(workspaceId);
+```
+
+**Funcionalidades:**
+
+- Obtener lista de canales del workspace
+- Crear nuevos canales
+- Estados de carga y error automáticos
+- Actualización de lista tras creación
+
+---
+
+### `useChannelMessage`
+
+Hook para manejar mensajes dentro de un canal:
+
+```javascript
+const { messages, loading, error, fetchMessages, sendMessage } =
+  useChannelMessage(channelId);
+```
+
+**Funcionalidades:**
+
+- Cargar mensajes de un canal
+- Enviar nuevos mensajes
+- Actualización automática de la lista
+- Manejo de estados de carga
 
 ## 🛡️ Sistema de Protección de Rutas
 
@@ -236,7 +272,7 @@ El proyecto está desplegado en **Vercel** con integración continua desde GitHu
 ### URL de Producción
 
 ```
-https://tu-proyecto-frontend.vercel.app
+https://slackapp-utn.vercel.app
 ```
 
 ### Configuración en Vercel
@@ -253,7 +289,7 @@ Configurar en el dashboard de Vercel:
 
 ## 🔗 Enlaces
 
-- 🌐 **Demo:** [https://tu-proyecto-frontend.vercel.app](https://tu-proyecto-frontend.vercel.app)
+- 🌐 **Demo:** [https://slackapp-utn.vercel.app](https://slackapp-utn.vercel.app)
 - 💻 **Frontend Repo:** [GitHub - Frontend](https://github.com/OyhamburoDev/slack-clone-frontend)
 - ⚙️ **Backend Repo:** [GitHub - Backend](https://github.com/OyhamburoDev/slack-clone-backend)
 - 📡 **API Docs:** Ver README del backend
@@ -295,12 +331,12 @@ Configurar en el dashboard de Vercel:
 
 ### Backend
 
-> La **seguridad real** está implementada en el backend con:
->
-> - Middlewares de autenticación (JWT verification)
-> - Middlewares de autorización (workspace, channel, member)
-> - Validación de permisos en cada endpoint
-> - Hash de contraseñas con bcrypt
+La **seguridad real** está implementada en el backend con:
+
+- **Middlewares de autenticación:** Verificación de tokens JWT
+- **Middlewares de autorización:** Control de permisos en workspace, channel y member
+- **Validación de permisos:** Cada endpoint valida los permisos del usuario
+- **Hash de contraseñas:** Implementado con bcrypt
 
 ## 📝 Próximas Mejoras
 
