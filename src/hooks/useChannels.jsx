@@ -37,12 +37,13 @@ function useChannels() {
     });
   }
 
+  // ← ESTE useEffect LO HABÍAS BORRADO Y ERA NECESARIO
   useEffect(() => {
     // Solo cargar canales si workspace_id existe y no es "new"
     if (workspace_id && workspace_id !== "new") {
       loadChannelList();
     }
-  }, [workspace_id]);
+  }, [workspace_id]); // ← Cuando cambia workspace_id, cargar canales
 
   useEffect(() => {
     if (response && response.ok) {

@@ -32,6 +32,9 @@ const WorkspaceDetailScreen = () => {
   const [isCreateChannelModalOpen, setIsCreateChannelModalOpen] =
     useState(false);
 
+  console.log("workspacesResponse:", workspacesResponse);
+  console.log("allWorkspaces:", workspacesResponse?.data?.workspaces);
+
   useEffect(() => {
     if (!isCreating && workspace_id) {
       sendRequest(async () => {
@@ -46,7 +49,7 @@ const WorkspaceDetailScreen = () => {
     };
 
     loadAllWorkspaces();
-  }, [sendWorkspacesRequest]);
+  }, []);
 
   const handleCreateChannel = (e) => {
     e.preventDefault();

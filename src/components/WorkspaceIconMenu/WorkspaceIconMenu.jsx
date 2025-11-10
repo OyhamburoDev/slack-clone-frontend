@@ -30,32 +30,37 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
           </div>
 
           <div className="workspace-list">
-            {allWorkspaces.map((item) => {
-              const workspace = item.workspace;
-              const wsInitials = getInitials(workspace.name);
-              const isCurrentWorkspace = workspace._id === currentWorkspace._id;
+            {allWorkspaces
+              .filter((item) => item && item.workspace) // ← Agregá esta línea
+              .map((item) => {
+                const workspace = item.workspace;
+                const wsInitials = getInitials(workspace.name);
+                const isCurrentWorkspace =
+                  workspace._id === currentWorkspace._id;
 
-              return (
-                <div
-                  key={workspace._id}
-                  className={`workspaceDetail-item ${
-                    isCurrentWorkspace ? "current" : ""
-                  }`}
-                  onClick={() => handleWorkspaceClick(workspace._id)}
-                >
+                return (
                   <div
-                    className="workspace-item-icon"
-                    style={{ backgroundColor: "#4A5568" }}
+                    key={workspace._id}
+                    className={`workspaceDetail-item ${
+                      isCurrentWorkspace ? "current" : ""
+                    }`}
+                    onClick={() => handleWorkspaceClick(workspace._id)}
                   >
-                    {wsInitials}
+                    <div
+                      className="workspace-item-icon"
+                      style={{ backgroundColor: "#4A5568" }}
+                    >
+                      {wsInitials}
+                    </div>
+                    <span className="workspace-item-name">
+                      {workspace.name}
+                    </span>
+                    {isCurrentWorkspace && (
+                      <span className="current-badge">Actual</span>
+                    )}
                   </div>
-                  <span className="workspace-item-name">{workspace.name}</span>
-                  {isCurrentWorkspace && (
-                    <span className="current-badge">Actual</span>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
       )}
