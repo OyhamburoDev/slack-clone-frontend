@@ -45,7 +45,7 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
                 >
                   <div
                     className="workspace-item-icon"
-                    style={{ backgroundColor: wsColors.primary }}
+                    style={{ backgroundColor: "#4A5568" }}
                   >
                     {wsInitials}
                   </div>
