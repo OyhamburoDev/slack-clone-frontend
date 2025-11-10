@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router";
 import {
   createNewChannelMessage,
   getChannelMessageListByChannelId,
 } from "../services/channelMessageService";
-import useFetch from "./useFetch";
+import useFetchMessages from "./useFetchMessages";
 
 function useChannelMessage() {
-  const { loading, response, error, sendRequest } = useFetch();
+  const { loading, response, error, sendRequest } = useFetchMessages();
   const { workspace_id, channel_id } = useParams();
   const [messages, setMessages] = useState([]);
+  const lastChannelRef = useRef(null); // ← Guardamos el último canal pedido
 
   async function loadMessagesList(workspace_id, channel_id) {
+    lastChannelRef.current = channel_id; // ← Guardamos qué canal estamos pidiendo
     sendRequest(async () => {
       return await getChannelMessageListByChannelId(workspace_id, channel_id);
     });
@@ -26,8 +28,6 @@ function useChannelMessage() {
   }
 
   useEffect(() => {
-    console.log("🔄 Cambió workspace/channel:", workspace_id, channel_id);
-
     setMessages([]); // Limpiar mensajes
     if (workspace_id && channel_id) {
       loadMessagesList(workspace_id, channel_id);
@@ -35,12 +35,13 @@ function useChannelMessage() {
   }, [workspace_id, channel_id]);
 
   useEffect(() => {
-    console.log("📩 Response:", response);
     if (response && response.ok && response.data && response.data.messages) {
-      console.log("✅ Mensajes recibidos:", response.data.messages.length);
-      setMessages(response.data.messages);
+      // ← Solo actualizar si la respuesta es del canal actual
+      if (lastChannelRef.current === channel_id) {
+        setMessages(response.data.messages);
+      }
     }
-  }, [response]);
+  }, [response, channel_id]);
 
   return {
     loading,
