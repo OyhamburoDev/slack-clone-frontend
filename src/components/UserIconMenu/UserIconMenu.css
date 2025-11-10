@@ -81,7 +81,7 @@
 
   /* Texto */
   text-align: left;
-  font-size: 14px;
+  font-size: 1.1rem;
   color: #ffffff;
   cursor: pointer;
 
@@ -91,5 +91,5 @@
 }
 
 .logout-button:hover {
-  background-color: #1164a3; /* Fondo gris clarito cuando pasás el mouse */
+  background-color: rgba(255, 255, 255, 0.1);
 }
