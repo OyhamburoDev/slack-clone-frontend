@@ -1,6 +1,10 @@
 import React from "react";
 
 const MessageList = ({ messages = [] }) => {
+  messages.forEach((msg, index) => {
+    console.log(`Mensaje ${index}:`, msg);
+  });
+
   if (!messages.length) {
     return (
       <p style={{ color: "#888" }}>Todavía no hay mensajes en este canal.</p>
