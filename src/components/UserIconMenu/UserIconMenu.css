@@ -38,7 +38,7 @@
   /* Posición */
   position: absolute;
   left: 50px; /* Se pone a la derecha del ícono */
-  bottom: 1rem; /* Alineado con el fondo del ícono */
+  bottom: 0rem; /* Alineado con el fondo del ícono */
 
   /* Tamaño */
   min-width: 200px; /* Ancho mínimo del cartel */

@@ -41,8 +41,12 @@ const WorkspaceDetailScreen = () => {
   }, [workspace_id, isCreating]);
 
   useEffect(() => {
-    sendWorkspacesRequest(getWorkspaceList);
-  }, []);
+    const loadAllWorkspaces = async () => {
+      await sendWorkspacesRequest(getWorkspaceList);
+    };
+
+    loadAllWorkspaces();
+  }, [sendWorkspacesRequest]);
 
   const handleCreateChannel = (e) => {
     e.preventDefault();
