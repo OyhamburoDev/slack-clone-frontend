@@ -1,0 +1,95 @@
+/* ========== CONTENEDOR DEL COMPONENTE ========== */
+.user-icon-menu-container {
+  position: relative; /* Importante: para que el menú se posicione relativo a este contenedor */
+  padding-bottom: 1rem;
+}
+
+/* ========== ÍCONO DE USUARIO ========== */
+.user-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #ffffff; /* Fondo blanco */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #2eb67d; /* Color verde de Slack */
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Sombra suave para que se vea mejor sobre el fondo oscuro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-icon:hover {
+  background-color: #f8f8f8; /* Gris muy clarito al pasar el mouse */
+  transform: scale(1.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra un poco más fuerte */
+}
+
+.user-icon:active {
+  transform: scale(0.95);
+}
+
+/* ========== MENÚ DESPLEGABLE (EL CARTEL GRIS) ========== */
+.user-menu-dropdown {
+  /* Posición */
+  position: absolute;
+  left: 50px; /* Se pone a la derecha del ícono */
+  bottom: 1rem; /* Alineado con el fondo del ícono */
+
+  /* Tamaño */
+  min-width: 200px; /* Ancho mínimo del cartel */
+  background-color: #1a1d21;
+
+  border-radius: 8px;
+
+  /* Espaciado interno */
+  padding: 8px 0;
+
+  /* Animación suave al aparecer */
+  animation: slideIn 0.2s ease;
+
+  /* Z-index para que aparezca por encima de todo */
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra para que se vea "flotando" */
+}
+
+/* Animación de entrada del menú */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== BOTÓN DE CERRAR SESIÓN ========== */
+.logout-button {
+  width: 100%;
+  padding: 12px 16px;
+
+  /* Quitar estilos por defecto del botón */
+  background: none;
+  border: none;
+
+  /* Texto */
+  text-align: left;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+
+  /* Transición suave */
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+}
+
+.logout-button:hover {
+  background-color: #1164a3; /* Fondo gris clarito cuando pasás el mouse */
+}

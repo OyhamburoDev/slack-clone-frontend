@@ -11,6 +11,7 @@ import ChannelChat from "../../components/channelChat/ChannelChat";
 import "./WorkspaceDetailScreen.css";
 import Modal from "../../components/modals/Modal";
 import CreateWorkspaceForm from "../../components/createWorkspaceForm/CreateWorkspaceForm";
+import UserIconMenu from "../../components/UserIconMenu/UserIconMenu";
 
 const WorkspaceDetailScreen = () => {
   const { workspace_id } = useParams();
@@ -63,7 +64,12 @@ const WorkspaceDetailScreen = () => {
   return (
     <div className="workspace-detail-container">
       <div className="cards-container">
-        <div className="icons-sidebar">{/* acá van los iconos */}</div>
+        <div className="icons-sidebar">
+          {/* Espacio vacío arriba (para futuros iconos de workspace) */}
+          <div style={{ flex: 1 }}></div>
+          {/* Ícono de usuario ABAJO */}
+          <UserIconMenu />
+        </div>
 
         {/* Left card se muestra vacía si isCreating  */}
         <div className="card left-card">
