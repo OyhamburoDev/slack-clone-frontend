@@ -8,6 +8,17 @@ Frontend de un clon de Slack desarrollado como proyecto final para UTN. Aplicaci
 
 🔗 **[Ver Demo](https://slackapp-utn.vercel.app)**
 
+### 🔑 Credenciales de Prueba
+
+Para probar la aplicación sin necesidad de registrarte, podés usar estas credenciales:
+
+```
+Email: demo@slackclone.com
+Contraseña: Demo123456
+```
+
+> **Nota:** Este usuario ya tiene workspaces y canales configurados para que puedas explorar todas las funcionalidades.
+
 ## 📸 Screenshots
 
 ### 🏠 Página de Login
