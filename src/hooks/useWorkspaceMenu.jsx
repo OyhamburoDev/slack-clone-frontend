@@ -27,7 +27,6 @@ export const useWorkspaceMenu = () => {
   };
 
   const handleWorkspaceClick = (workspaceId) => {
-    console.log("Navegando a workspace:", workspaceId); // ← agregamos esto para debuggear
     navigate(`/workspace/${workspaceId}`);
     setMenuAbierto(false);
   };

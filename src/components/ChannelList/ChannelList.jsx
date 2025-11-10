@@ -11,8 +11,6 @@ const ChannelList = ({
 }) => {
   const { workspace_id } = useParams();
 
-  console.log("este es el bucle", { channels });
-
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div

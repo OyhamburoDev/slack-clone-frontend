@@ -5,7 +5,7 @@ import {
   getWorkspaceById,
   inviteMember,
 } from "../../services/workspaceService";
-import ChannelList from "../../components/ChannelList/ChannelList";
+import ChannelList from "../../components/channelList/ChannelList";
 import useChannels from "../../hooks/useChannels";
 import ChannelChat from "../../components/channelChat/ChannelChat";
 import "./WorkspaceDetailScreen.css";
@@ -31,9 +31,6 @@ const WorkspaceDetailScreen = () => {
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
   const [isCreateChannelModalOpen, setIsCreateChannelModalOpen] =
     useState(false);
-
-  console.log("workspacesResponse:", workspacesResponse);
-  console.log("allWorkspaces:", workspacesResponse?.data?.workspaces);
 
   useEffect(() => {
     if (!isCreating && workspace_id) {

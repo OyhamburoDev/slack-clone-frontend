@@ -9,7 +9,6 @@ const ChannelChat = ({ channelName }) => {
 
   const { messages, createChannelMessage, loadMessagesList } =
     useChannelMessage();
-  console.log(messages);
   const [newMessage, setNewMessage] = useState("");
 
   const handleSendMessage = async (e) => {

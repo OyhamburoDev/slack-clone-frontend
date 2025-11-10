@@ -16,9 +16,6 @@ const HomeScreen = () => {
     sendRequest(getWorkspaceList);
   }, []);
 
-  console.log("es este", response, loading, error);
-  console.log("WORKSPACES:", response?.data?.workspaces);
-
   const getWorkspaceColors = (name) => {
     const colorPairs = [
       { primary: "#4A154B", secondary: "#2EB67D" },

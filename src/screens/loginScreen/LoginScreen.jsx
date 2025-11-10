@@ -31,7 +31,6 @@ export const LoginScreen = () => {
   };
 
   useEffect(() => {
-    console.log(response);
     if (response && response.ok) {
       localStorage.setItem(
         LOCALSTORAGE_KEYS.AUTH_TOKEN,

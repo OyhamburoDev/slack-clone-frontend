@@ -21,10 +21,6 @@ async function getChannelListByWorkspaceId(workspace_id) {
 }
 
 async function createNewChannel(workspace_id, channel_name) {
-  console.log("🚀 createNewChannel llamado con:", {
-    workspace_id,
-    channel_name,
-  });
   const response_http = await fetch(
     `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}/channels`,
     {
@@ -38,7 +34,7 @@ async function createNewChannel(workspace_id, channel_name) {
   );
 
   const response_data = await response_http.json();
-  console.log("📨 createNewChannel respuesta:", response_data.data);
+
   return response_data;
 }
 
