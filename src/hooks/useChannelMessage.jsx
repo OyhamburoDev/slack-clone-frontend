@@ -26,15 +26,18 @@ function useChannelMessage() {
   }
 
   useEffect(() => {
-    console.log(workspace_id, channel_id);
+    console.log("🔄 Cambió workspace/channel:", workspace_id, channel_id);
+
+    setMessages([]); // Limpiar mensajes
     if (workspace_id && channel_id) {
       loadMessagesList(workspace_id, channel_id);
     }
   }, [workspace_id, channel_id]);
 
   useEffect(() => {
-    console.log(response);
+    console.log("📩 Response:", response);
     if (response && response.ok && response.data && response.data.messages) {
+      console.log("✅ Mensajes recibidos:", response.data.messages.length);
       setMessages(response.data.messages);
     }
   }, [response]);

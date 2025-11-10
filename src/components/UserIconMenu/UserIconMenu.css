@@ -6,8 +6,8 @@
 
 /* ========== ÍCONO DE USUARIO ========== */
 .user-icon {
-  width: 40px;
-  height: 40px;
+  width: 43px;
+  height: 43px;
   border-radius: 8px;
   background-color: #ffffff; /* Fondo blanco */
 
@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
 
-  color: #2eb67d; /* Color verde de Slack */
+  color: #1a1d21; /* Color verde de Slack */
   cursor: pointer;
   transition: all 0.2s ease;
 

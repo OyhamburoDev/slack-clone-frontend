@@ -1,0 +1,164 @@
+/* ========== CONTENEDOR DEL COMPONENTE ========== */
+.workspace-icon-menu-container {
+  position: relative;
+}
+
+/* ========== ÍCONO DEL WORKSPACE ========== */
+.workspace-icon-main {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Sombra suave */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.workspace-initials {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  user-select: none;
+}
+
+.workspace-icon-main:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.workspace-icon-main:active {
+  transform: scale(0.95);
+}
+
+/* ========== MENÚ DESPLEGABLE ========== */
+.workspace-menu-dropdown {
+  position: absolute;
+  left: 55px;
+  top: 0;
+
+  min-width: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+
+  background-color: #1a1d21;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  animation: slideIn 0.2s ease;
+  z-index: 1000;
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ========== HEADER DEL DROPDOWN ========== */
+.workspace-dropdown-header {
+  padding: 16px 16px 12px 16px;
+  background-color: #1a1d21;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ========== LISTA DE WORKSPACES ========== */
+.workspace-list {
+  padding: 8px 0;
+}
+
+.workspaceDetail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  position: relative;
+}
+
+.workspaceDetail-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Item actual - sin cambio de fondo, solo el badge lo identifica */
+.workspaceDetail-item.current {
+  background-color: transparent;
+}
+
+.workspaceDetail-item.current:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========== ÍCONO PEQUEÑO EN LA LISTA ========== */
+.workspace-item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+
+  flex-shrink: 0;
+}
+
+/* ========== NOMBRE DEL WORKSPACE ========== */
+.workspace-item-name {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========== BADGE "ACTUAL" ========== */
+.current-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1264a3;
+  background-color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ========== SCROLLBAR PERSONALIZADA ========== */
+.workspace-menu-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.workspace-menu-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.workspace-menu-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.workspace-menu-dropdown::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

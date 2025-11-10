@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 
 const ChannelChat = ({ channelName }) => {
   const { workspace_id, channel_id } = useParams();
-  console.log("Holaa");
+
   const { messages, createChannelMessage, loadMessagesList } =
     useChannelMessage();
   console.log(messages);

@@ -1,6 +1,6 @@
 .canal-title {
   color: #d1bdd6;
-  font-size: 18px;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -13,7 +13,7 @@
   cursor: pointer;
   text-align: left;
   border-radius: 6px;
-  font-size: 15px;
+  font-size: 1rem;
   transition: background 0.2s;
 }
 

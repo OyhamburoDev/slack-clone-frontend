@@ -12,6 +12,8 @@ import "./WorkspaceDetailScreen.css";
 import Modal from "../../components/modals/Modal";
 import CreateWorkspaceForm from "../../components/createWorkspaceForm/CreateWorkspaceForm";
 import UserIconMenu from "../../components/UserIconMenu/UserIconMenu";
+import { getWorkspaceList } from "../../services/workspaceService";
+import WorkspaceIconMenu from "../../components/WorkspaceIconMenu/WorkspaceIconMenu";
 
 const WorkspaceDetailScreen = () => {
   const { workspace_id } = useParams();
@@ -21,6 +23,8 @@ const WorkspaceDetailScreen = () => {
   const [selectedChannel, setSelectedChannel] = useState(null);
   const [inviteEmail, setInviteEmail] = useState("");
   const { sendRequest, response, error, loading } = useFetch();
+  const { sendRequest: sendWorkspacesRequest, response: workspacesResponse } =
+    useFetch();
   const { createChannel, channels } = useChannels();
   const navigate = useNavigate();
 
@@ -36,7 +40,9 @@ const WorkspaceDetailScreen = () => {
     }
   }, [workspace_id, isCreating]);
 
-  console.log("response:", response);
+  useEffect(() => {
+    sendWorkspacesRequest(getWorkspaceList);
+  }, []);
 
   const handleCreateChannel = (e) => {
     e.preventDefault();
@@ -65,8 +71,13 @@ const WorkspaceDetailScreen = () => {
     <div className="workspace-detail-container">
       <div className="cards-container">
         <div className="icons-sidebar">
-          {/* Espacio vacío arriba (para futuros iconos de workspace) */}
-          <div style={{ flex: 1 }}></div>
+          {/* Ícono del workspace arriba */}
+          {!isCreating && response && (
+            <WorkspaceIconMenu
+              currentWorkspace={response.data.workspace}
+              allWorkspaces={workspacesResponse?.data?.workspaces}
+            />
+          )}
           {/* Ícono de usuario ABAJO */}
           <UserIconMenu />
         </div>
