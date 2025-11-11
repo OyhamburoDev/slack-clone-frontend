@@ -36,7 +36,7 @@
 }
 
 .left-card {
-  flex: 0 0 500px;
+  flex: 0 0 450px;
   background-color: rgba(53, 13, 54, 0.959);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -64,24 +64,35 @@
 .footer-text {
   color: #d1bdd6;
   font-size: 1rem;
-  margin-bottom: 12px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   text-align: left;
 }
 
 .invite-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   width: 100%;
-  padding: 10px;
-  background: #4a4d57;
-  border: 1px solid #4a1a4b;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  background: #1a1d21;
+  border: 1px solid #9d6e9d71;
   color: #fff;
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s;
 }
+.invite-button svg {
+  display: block;
+  flex-shrink: 0;
+}
 
-.invite-button:hover {
-  background: #5a5d67;
+.left-card-footer .invite-button:hover {
+  background: #2a2d31 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .right-card {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router";
 import useFetch from "../../hooks/useFetch";
+import { UserPlus } from "lucide-react";
 import {
   getWorkspaceById,
   inviteMember,
@@ -118,6 +119,7 @@ const WorkspaceDetailScreen = () => {
                   className="invite-button"
                   onClick={() => setIsInviteModalOpen(true)}
                 >
+                  <UserPlus size={15} />
                   Invita a compañeros de equipo
                 </button>
               </div>
