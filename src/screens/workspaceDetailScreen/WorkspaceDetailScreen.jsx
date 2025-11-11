@@ -5,7 +5,7 @@ import {
   getWorkspaceById,
   inviteMember,
 } from "../../services/workspaceService";
-
+import ChannelList from "../../components/channelList/ChannelList";
 import useChannels from "../../hooks/useChannels";
 import ChannelChat from "../../components/channelChat/ChannelChat";
 import "./WorkspaceDetailScreen.css";
