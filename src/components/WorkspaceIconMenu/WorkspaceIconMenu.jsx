@@ -55,9 +55,9 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
                     <span className="workspace-item-name">
                       {workspace.name}
                     </span>
-                    {isCurrentWorkspace && (
+                    {/* {isCurrentWorkspace && (
                       <span className="current-badge">Actual</span>
-                    )}
+                    )} */}
                   </div>
                 );
               })}
