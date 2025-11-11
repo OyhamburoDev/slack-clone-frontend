@@ -9,8 +9,6 @@ const processMessagesForGrouping = (messages) => {
     }
 
     const previousMsg = messages[index - 1];
-
-    // 👇 Usamos created_at (con guión bajo)
     const currentTime = new Date(msg.created_at);
     const previousTime = new Date(previousMsg.created_at);
 
@@ -29,7 +27,7 @@ const processMessagesForGrouping = (messages) => {
   });
 };
 
-// 👇 Nueva función para formatear la hora
+//  Función para formatear la hora
 const formatMessageTime = (dateString) => {
   const date = new Date(dateString);
 
@@ -47,7 +45,7 @@ const MessageList = ({ messages = [] }) => {
     );
   }
 
-  // 👇 Procesamos los mensajes ANTES del return
+  // Procesar los mensajes ANTES del return
   const processedMessages = processMessagesForGrouping(messages);
 
   return (
@@ -63,7 +61,7 @@ const MessageList = ({ messages = [] }) => {
           }}
         >
           <div className="message-list-container">
-            {/* 👇 CONDICIONAL: Solo mostramos foto si showHeader es true */}
+            {/* CONDICIONAL: Solo mostramos foto si showHeader es true */}
             {msg.showHeader ? (
               <div>
                 <img
@@ -73,12 +71,12 @@ const MessageList = ({ messages = [] }) => {
                 />
               </div>
             ) : (
-              // 👇 Si NO mostramos header, dejamos espacio vacío del mismo tamaño
+              // Si NO mostramos header, dejamos espacio vacío del mismo tamaño
               <div style={{ width: "46px" }}></div>
             )}
 
             <div>
-              {/* 👇 CONDICIONAL: Solo mostramos nombre si showHeader es true */}
+              {/* CONDICIONAL: Solo mostramos nombre si showHeader es true */}
               {msg.showHeader && (
                 <div
                   style={{
@@ -96,7 +94,7 @@ const MessageList = ({ messages = [] }) => {
                 </div>
               )}
 
-              {/* 👇 El contenido SIEMPRE se muestra */}
+              {/* El contenido SIEMPRE se muestra */}
               <p className="message-content">{msg.content}</p>
             </div>
           </div>
