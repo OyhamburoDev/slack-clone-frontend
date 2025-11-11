@@ -130,3 +130,38 @@
     font-size: 12px;
   }
 }
+
+/* ========== PERSONALIZACIÓN DEL SCROLLBAR ========== */
+
+/* Para navegadores Webkit (Chrome, Edge, Safari) */
+.channel-chat-messages::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra */
+}
+
+.channel-chat-messages::-webkit-scrollbar-track {
+  background: transparent; /* Fondo transparente (sin track visible) */
+}
+
+.channel-chat-messages::-webkit-scrollbar-thumb {
+  background: transparent; /* Invisible por defecto */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.channel-chat-messages:hover::-webkit-scrollbar-thumb {
+  background: #888; /* Aparece al hacer hover en el chat */
+}
+
+.channel-chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Más oscuro al pasar sobre la barra misma */
+}
+
+/* Ocultar las flechitas (buttons) */
+.channel-chat-messages::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Para Firefox */
+.channel-chat-messages {
+  scrollbar-width: thin; /* Hace la barra más delgada */
+  scrollbar-color: #888 transparent; /* Color barra | Color track */
+}

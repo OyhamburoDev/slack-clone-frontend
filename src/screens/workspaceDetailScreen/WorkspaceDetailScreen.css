@@ -158,7 +158,8 @@
     flex: 1;
     border-radius: 10px;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
-    min-height: 75vh;
+    height: 75vh; /* ← Cambiar de min-height a height */
+    max-height: 75vh; /* ← Agregar max-height */
   }
 
   .left-card-footer {
@@ -195,7 +196,8 @@
   }
 
   .right-card {
-    min-height: 70vh;
+    height: 70vh; /* ← Cambiar de min-height a height */
+    max-height: 70vh; /* ← Agregar max-height */
   }
 
   .footer-text {
