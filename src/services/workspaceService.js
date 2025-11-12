@@ -60,4 +60,24 @@ async function inviteMember(workspace_id, invited_email) {
   return response_data;
 }
 
-export { getWorkspaceList, createWorkspace, getWorkspaceById, inviteMember };
+async function deleteWorkspace(workspace_id) {
+  const response_http = await fetch(
+    `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}`,
+    {
+      method: HTTP_METHODS.DELETE,
+      headers: {
+        Authorization: "Bearer " + getAuthorizationToken(),
+      },
+    }
+  );
+  const response_data = await response_http.json();
+  return response_data;
+}
+
+export {
+  getWorkspaceList,
+  createWorkspace,
+  getWorkspaceById,
+  inviteMember,
+  deleteWorkspace,
+};

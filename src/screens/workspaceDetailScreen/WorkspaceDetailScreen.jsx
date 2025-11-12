@@ -73,9 +73,10 @@ const WorkspaceDetailScreen = () => {
   };
 
   const isAdmin =
-    workspacesResponse?.data?.workspaces?.find(
-      (item) => item.workspace._id === workspace_id
-    )?.role === "admin";
+    !isCreating &&
+    workspacesResponse?.data?.workspaces
+      ?.filter((item) => item && item.workspace)
+      ?.find((item) => item.workspace._id === workspace_id)?.role === "admin";
 
   return (
     <div className="workspace-detail-container">
@@ -86,6 +87,7 @@ const WorkspaceDetailScreen = () => {
             <WorkspaceIconMenu
               currentWorkspace={response.data.workspace}
               allWorkspaces={workspacesResponse?.data?.workspaces}
+              isAdmin={isAdmin}
             />
           )}
           {/* Ícono de usuario ABAJO */}

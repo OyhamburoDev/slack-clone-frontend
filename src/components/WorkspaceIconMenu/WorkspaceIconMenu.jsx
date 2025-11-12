@@ -2,9 +2,11 @@ import React from "react";
 import { useWorkspaceMenu } from "../../hooks/useWorkspaceMenu";
 import { getInitials } from "../../utils/workspaceUtils";
 import { useNavigate } from "react-router";
+import { deleteWorkspace } from "../../services/workspaceService"; // ← Nuevo
 import "./WorkspaceIconMenu.css";
 
-const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
+const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces, isAdmin }) => {
+  // ← Agregá isAdmin
   const { menuAbierto, menuRef, toggleMenu, handleWorkspaceClick } =
     useWorkspaceMenu();
   const navigate = useNavigate();
@@ -19,6 +21,20 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
     navigate("/workspace/new");
   };
 
+  // ← Nueva función
+  const handleDeleteWorkspace = async () => {
+    if (
+      window.confirm(`¿Seguro que querés eliminar "${currentWorkspace.name}"?`)
+    ) {
+      const result = await deleteWorkspace(currentWorkspace._id);
+      if (result.ok) {
+        navigate("/home");
+      } else {
+        alert("Error: " + result.message);
+      }
+    }
+  };
+
   return (
     <div className="workspace-icon-menu-container" ref={menuRef}>
       <div
@@ -31,6 +47,21 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
 
       {menuAbierto && allWorkspaces && allWorkspaces.length > 0 && (
         <div className="workspace-menu-dropdown">
+          {/* ← Nueva sección del workspace actual */}
+          <div className="workspace-current-section">
+            <div className="workspace-current-name">
+              {currentWorkspace.name}
+            </div>
+            {isAdmin && (
+              <div
+                className="workspace-delete-link"
+                onClick={handleDeleteWorkspace}
+              >
+                Eliminar workspace
+              </div>
+            )}
+          </div>
+
           <div className="workspace-dropdown-header">
             <span>Cambiar a otro workspace</span>
           </div>
@@ -61,14 +92,11 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
                     <span className="workspace-item-name">
                       {workspace.name}
                     </span>
-                    {/* {isCurrentWorkspace && (
-                      <span className="current-badge">Actual</span>
-                    )} */}
                   </div>
                 );
               })}
           </div>
-          {/*  Botón para agregar workspace */}
+
           <div className="workspaceDetail-item" onClick={handleAddWorkspace}>
             <div
               className="workspace-item-icon"

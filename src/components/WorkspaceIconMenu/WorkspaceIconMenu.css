@@ -36,6 +36,31 @@
   transform: scale(0.95);
 }
 
+.workspace-current-section {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.workspace-current-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.workspace-delete-link {
+  font-size: 0.875rem;
+  color: #e01e5a;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.workspace-delete-link:hover {
+  color: #ff4d6d;
+  text-decoration: underline;
+}
+
 /* ========== MENÚ DESPLEGABLE ========== */
 .workspace-menu-dropdown {
   position: absolute;
@@ -71,10 +96,10 @@
 .workspace-dropdown-header {
   padding: 16px 16px 12px 16px;
   background-color: #1a1d21;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   letter-spacing: 0.5px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.108);
 }
@@ -127,7 +152,7 @@
 /* ========== NOMBRE DEL WORKSPACE ========== */
 .workspace-item-name {
   flex: 1;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #ffffff;
   overflow: hidden;
