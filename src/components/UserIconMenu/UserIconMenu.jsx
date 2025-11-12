@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
+import { getUserDataFromToken } from "../../utils/auth.utils";
 import "./UserIconMenu.css";
 
 const UserIconMenu = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const menuRef = useRef(null);
 
@@ -20,6 +22,11 @@ const UserIconMenu = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuAbierto]);
+
+  useEffect(() => {
+    const data = getUserDataFromToken();
+    setUserData(data);
+  }, []);
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
@@ -50,12 +57,45 @@ const UserIconMenu = () => {
         </svg>
       </div>
 
-      {/* El menú desplegable (solo se muestra si menuAbierto es true) */}
       {menuAbierto && (
         <div className="user-menu-dropdown">
-          <button className="logout-button" onClick={handleLogout}>
-            Cerrar sesión
-          </button>
+          {userData ? (
+            <>
+              <div className="user-menu-dropdown-fullname">
+                <div>
+                  <img
+                    src="https://ca.slack-edge.com/T09PEMM1PCJ-U09NZ7PJAB1-g5331fa8f25c-48"
+                    alt="avatar-usuario"
+                    className="message-avatar"
+                  />
+                </div>
+                <div className="user-menu-dropdown-name">
+                  <strong style={{ color: "#d5d3d3ff" }}>
+                    {userData.name}
+                  </strong>
+                  <span
+                    style={{
+                      color: "#d5d3d3ff",
+                      fontSize: "0.8rem",
+                      paddingTop: "0.1rem",
+                    }}
+                  >
+                    Disponible
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <button className="logout-button" onClick={handleLogout}>
+                  Cerrar sesión
+                </button>
+              </div>
+            </>
+          ) : (
+            <div style={{ padding: "12px", color: "#d5d3d3ff" }}>
+              Cargando...
+            </div>
+          )}
         </div>
       )}
     </div>

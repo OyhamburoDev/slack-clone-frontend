@@ -1,17 +1,23 @@
 import React from "react";
 import { useWorkspaceMenu } from "../../hooks/useWorkspaceMenu";
 import { getInitials } from "../../utils/workspaceUtils";
+import { useNavigate } from "react-router";
 import "./WorkspaceIconMenu.css";
 
 const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
   const { menuAbierto, menuRef, toggleMenu, handleWorkspaceClick } =
     useWorkspaceMenu();
+  const navigate = useNavigate();
 
   if (!currentWorkspace) {
     return null;
   }
 
   const initials = getInitials(currentWorkspace.name);
+
+  const handleAddWorkspace = () => {
+    navigate("/workspace/new");
+  };
 
   return (
     <div className="workspace-icon-menu-container" ref={menuRef}>
@@ -31,7 +37,7 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
 
           <div className="workspace-list">
             {allWorkspaces
-              .filter((item) => item && item.workspace) // ← Agregá esta línea
+              .filter((item) => item && item.workspace)
               .map((item) => {
                 const workspace = item.workspace;
                 const wsInitials = getInitials(workspace.name);
@@ -61,6 +67,18 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces }) => {
                   </div>
                 );
               })}
+          </div>
+          {/*  Botón para agregar workspace */}
+          <div className="workspaceDetail-item" onClick={handleAddWorkspace}>
+            <div
+              className="workspace-item-icon"
+              style={{ backgroundColor: "#4a556840", fontSize: "1.5rem" }}
+            >
+              +
+            </div>
+            <span className="workspace-item-name">
+              Añadir un espacio de trabajo
+            </span>
           </div>
         </div>
       )}

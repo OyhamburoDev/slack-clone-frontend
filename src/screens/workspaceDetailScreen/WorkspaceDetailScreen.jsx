@@ -47,7 +47,7 @@ const WorkspaceDetailScreen = () => {
     };
 
     loadAllWorkspaces();
-  }, []);
+  }, [workspace_id]);
 
   const handleCreateChannel = (e) => {
     e.preventDefault();
