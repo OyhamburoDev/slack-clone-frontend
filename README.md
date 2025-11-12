@@ -37,6 +37,10 @@ Contraseña: Demo123456
 
 ![Crear Canal](./screenshots/crear-canal.png)
 
+### 🗑️ Eliminar Workspace (Admin)
+
+![Eliminar Workspace](./screenshots/delete-workspace.png)
+
 ## ✨ Características Principales
 
 - ✅ **Autenticación completa** - Registro, login y verificación de email
