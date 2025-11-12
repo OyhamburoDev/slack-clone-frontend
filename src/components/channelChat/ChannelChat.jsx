@@ -77,20 +77,25 @@ const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
       <div className="channel-chat-header">
         <h3 className="channel-chat-title"># {channelName}</h3>
         {isAdmin && channel_id && (
-          <div className="channel-chat-title-button-ctn" onClick={toggleMenu}>
-            <MoreVertical size={20} color="white" />
-          </div>
-        )}
-        {/*  Dropdown menu */}
-        {menuAbierto && (
-          <div className="channel-menu-dropdown" ref={menuRef}>
-            <div className="channel-menu-item" onClick={handleEliminarCanal}>
-              Eliminar canal
+          <div ref={menuRef}>
+            <div className="channel-chat-title-button-ctn" onClick={toggleMenu}>
+              <MoreVertical size={20} color="white" />
             </div>
+
+            {/*  Dropdown menu */}
+            {menuAbierto && (
+              <div className="channel-menu-dropdown">
+                <div
+                  className="channel-menu-item"
+                  onClick={handleEliminarCanal}
+                >
+                  Eliminar canal
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
-
       <div className="channel-chat-messages">
         <MessageList messages={messages} />
       </div>
