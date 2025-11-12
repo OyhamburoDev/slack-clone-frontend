@@ -59,6 +59,7 @@ function useChannels() {
     error,
     channels,
     createChannel,
+    loadChannelList,
   };
 }
 

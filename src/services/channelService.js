@@ -38,4 +38,19 @@ async function createNewChannel(workspace_id, channel_name) {
   return response_data;
 }
 
-export { getChannelListByWorkspaceId, createNewChannel };
+async function deleteChannel(workspace_id, channel_id) {
+  const response_http = await fetch(
+    `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}/channels/${channel_id}`,
+    {
+      method: HTTP_METHODS.DELETE,
+      headers: {
+        Authorization: "Bearer " + getAuthorizationToken(),
+      },
+    }
+  );
+
+  const response_data = await response_http.json();
+  return response_data;
+}
+
+export { getChannelListByWorkspaceId, createNewChannel, deleteChannel };

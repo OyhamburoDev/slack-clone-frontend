@@ -26,7 +26,7 @@ const WorkspaceDetailScreen = () => {
   const { sendRequest, response, error, loading } = useFetch();
   const { sendRequest: sendWorkspacesRequest, response: workspacesResponse } =
     useFetch();
-  const { createChannel, channels } = useChannels();
+  const { createChannel, channels, loadChannelList } = useChannels();
   const navigate = useNavigate();
 
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
@@ -71,6 +71,11 @@ const WorkspaceDetailScreen = () => {
       }
     }
   };
+
+  const isAdmin =
+    workspacesResponse?.data?.workspaces?.find(
+      (item) => item.workspace._id === workspace_id
+    )?.role === "admin";
 
   return (
     <div className="workspace-detail-container">
@@ -139,6 +144,8 @@ const WorkspaceDetailScreen = () => {
               channelName={
                 channels.find((c) => c._id === selectedChannel)?.name
               }
+              isAdmin={isAdmin}
+              loadChannelList={loadChannelList}
             />
           ) : (
             <div className="empty-chat-message">
