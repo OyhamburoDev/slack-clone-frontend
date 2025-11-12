@@ -47,6 +47,12 @@ Contraseña: Demo123456
 - 🔒 **Rutas protegidas** - Control de acceso basado en autenticación
 - 🎨 **UI/UX fiel al original** - Interfaz inspirada en Slack
 - 📱 **Diseño responsivo** - Adaptado a diferentes dispositivos
+- 🗑️ **Gestión avanzada de canales** - Crear y eliminar canales (permisos por rol)
+- 🏢 **Gestión avanzada de workspaces** - Eliminar workspaces (solo administradores)
+- 👤 **Sistema de roles** - Administradores y miembros con permisos diferenciados
+- 🔄 **Cambio rápido entre workspaces** - Dropdown para navegar entre espacios
+- 👤 **Menú de usuario** - Ver perfil y cerrar sesión
+- 📅 **Timestamps en mensajes** - Fecha y hora de cada mensaje
 
 ## 🚀 Tecnologías
 
@@ -55,6 +61,8 @@ Contraseña: Demo123456
 - **React Router DOM** - Manejo de rutas
 - **CSS3** - Estilos personalizados
 - **Vercel** - Deployment y hosting
+- **Lucide React** - Iconos
+- **jwt-decode** - Decodificación de tokens JWT
 
 ## 🏗️ Arquitectura del Proyecto
 
@@ -274,6 +282,12 @@ Workspace → Ver canales → Seleccionar canal → Enviar mensajes
 
 ```
 Workspace → Invitar miembro → Email enviado → Confirmación por link
+```
+
+### 5️⃣ Administración (Solo Admins)
+
+```
+Workspace → Eliminar canales → Eliminar workspace → Invitar miembros
 ```
 
 ## 🌐 Deployment (Vercel)
