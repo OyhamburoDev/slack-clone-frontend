@@ -15,6 +15,7 @@ import CreateWorkspaceForm from "../../components/createWorkspaceForm/CreateWork
 import UserIconMenu from "../../components/UserIconMenu/UserIconMenu";
 import { getWorkspaceList } from "../../services/workspaceService";
 import WorkspaceIconMenu from "../../components/WorkspaceIconMenu/WorkspaceIconMenu";
+import ROLES from "../../constants/roles";
 
 const WorkspaceDetailScreen = () => {
   const { workspace_id } = useParams();
@@ -76,7 +77,8 @@ const WorkspaceDetailScreen = () => {
     !isCreating &&
     workspacesResponse?.data?.workspaces
       ?.filter((item) => item && item.workspace)
-      ?.find((item) => item.workspace._id === workspace_id)?.role === "admin";
+      ?.find((item) => item.workspace._id === workspace_id)?.role ===
+      ROLES.ADMIN;
 
   return (
     <div className="workspace-detail-container">
