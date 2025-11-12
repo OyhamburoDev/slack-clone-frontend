@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { deleteChannel } from "../../services/channelService";
 import { MoreVertical } from "lucide-react";
+import ChatInput from "../chatInput/ChatInput";
 
 const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
   const { workspace_id, channel_id } = useParams();
@@ -100,18 +101,11 @@ const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
         <MessageList messages={messages} />
       </div>
 
-      <form onSubmit={handleSendMessage} className="channel-chat-form">
-        <input
-          type="text"
-          placeholder="Escribí tu mensaje..."
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          className="channel-chat-input"
-        />
-        <button type="submit" className="channel-chat-button">
-          Enviar
-        </button>
-      </form>
+      <ChatInput
+        newMessage={newMessage}
+        setNewMessage={setNewMessage}
+        handleSendMessage={handleSendMessage}
+      />
     </div>
   );
 };

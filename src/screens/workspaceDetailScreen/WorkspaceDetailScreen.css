@@ -97,7 +97,7 @@
 
 .right-card {
   flex: 1;
-  background-color: rgba(26, 29, 33, 0.8);
+  background-color: rgb(26, 29, 33);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   border-left: 1px solid rgba(255, 255, 255, 0.1);

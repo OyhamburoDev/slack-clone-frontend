@@ -27,7 +27,7 @@
 
 .date-divider-line {
   flex: 1;
-  height: 1px;
+  height: 0.5px;
   background-color: #e0e0e0;
 }
 

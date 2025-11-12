@@ -1,0 +1,128 @@
+/* Form principal */
+.channel-chat-form {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+/* Contenedor del input + toolbar */
+.chat-input-wrapper {
+  background: #23272b;
+  border: 1px solid #696868d0;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+/* Toolbar */
+.chat-toolbar {
+  display: flex;
+  gap: 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #444;
+  margin-bottom: 8px;
+}
+
+.toolbar-button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.toolbar-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #666;
+}
+
+/* Contenedor de input + botón */
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Input */
+.channel-chat-input {
+  flex: 1;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+}
+
+.channel-chat-input::placeholder {
+  color: #888;
+}
+
+/* Botón enviar */
+.channel-chat-button {
+  padding: 6px 10px;
+  background: transparent;
+  color: #888;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: not-allowed;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+/* Botón activo (con texto) */
+.channel-chat-button.active {
+  background: #2eb67d;
+  color: #fff;
+  cursor: pointer;
+}
+
+.channel-chat-button.active:hover {
+  background: #1fa366;
+}
+
+.channel-chat-button:disabled {
+  opacity: 0.5;
+}
+.emoji-picker-container {
+  margin-bottom: 8px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .channel-chat-form {
+    padding-top: 12px;
+  }
+
+  .toolbar-button {
+    padding: 3px 6px;
+    font-size: 13px;
+  }
+
+  .channel-chat-button {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .channel-chat-form {
+    padding-top: 10px;
+  }
+
+  .chat-toolbar {
+    gap: 3px;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+  }
+
+  .toolbar-button {
+    padding: 3px 5px;
+    font-size: 12px;
+  }
+
+  .channel-chat-button {
+    padding: 4px 7px;
+    font-size: 10px;
+  }
+}
