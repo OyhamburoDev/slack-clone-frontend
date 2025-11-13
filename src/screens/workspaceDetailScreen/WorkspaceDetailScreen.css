@@ -1,13 +1,14 @@
 .workspace-detail-container {
   background: linear-gradient(135deg, #4a154b 0%, #36184c 50%, #1a0b2e 100%);
   min-height: 100vh;
-  padding: 20px;
   padding-left: 0px;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
 }
 
 .cards-container {
   display: flex;
-  margin-top: 20px;
+  margin-top: 0.5rem;
 }
 
 .ws-detail-title {
@@ -37,7 +38,7 @@
 
 .left-card {
   flex: 0 0 450px;
-  background-color: rgba(53, 13, 54, 0.959);
+  background-color: rgba(37, 12, 37, 0.959);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
@@ -51,12 +52,12 @@
 }
 
 .left-title-name {
-  border-bottom: 1px solid #4a1a4b;
+  border-bottom: 1px solid #d2bfd22d;
   padding-bottom: 1rem;
 }
 
 .left-card-footer {
-  border-top: 1px solid #4a1a4b;
+  border-top: 1px solid #bdb1bd28;
   padding: 0px;
   margin-top: auto;
 }

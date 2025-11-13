@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router";
 import useFetch from "../../hooks/useFetch";
-import { UserPlus } from "lucide-react";
+import { UserPlus, Search } from "lucide-react";
 import {
   getWorkspaceById,
   inviteMember,
@@ -15,6 +15,7 @@ import CreateWorkspaceForm from "../../components/createWorkspaceForm/CreateWork
 import UserIconMenu from "../../components/UserIconMenu/UserIconMenu";
 import { getWorkspaceList } from "../../services/workspaceService";
 import WorkspaceIconMenu from "../../components/WorkspaceIconMenu/WorkspaceIconMenu";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import ROLES from "../../constants/roles";
 
 const WorkspaceDetailScreen = () => {
@@ -49,6 +50,7 @@ const WorkspaceDetailScreen = () => {
 
     loadAllWorkspaces();
   }, [workspace_id]);
+  console.log("workspacesResponse completo:", workspacesResponse);
 
   const handleCreateChannel = (e) => {
     e.preventDefault();
@@ -82,6 +84,17 @@ const WorkspaceDetailScreen = () => {
 
   return (
     <div className="workspace-detail-container">
+      <SearchBar
+        channels={channels}
+        workspaces={workspacesResponse?.data?.workspaces || []}
+        onSelectChannel={(channelId) => {
+          setSelectedChannel(channelId);
+          navigate(`/workspace/${workspace_id}/${channelId}`);
+        }}
+        onSelectWorkspace={(workspaceId) => {
+          navigate(`/workspace/${workspaceId}`);
+        }}
+      />
       <div className="cards-container">
         <div className="icons-sidebar">
           {/* Ícono del workspace arriba */}
