@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tiptap/extension-link": "^3.10.7",
+    "@tiptap/extension-placeholder": "^3.10.7",
+    "@tiptap/extension-underline": "^3.10.7",
+    "@tiptap/react": "^3.10.7",
+    "@tiptap/starter-kit": "^3.10.7",
     "emoji-picker-react": "^4.15.0",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.553.0",

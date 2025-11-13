@@ -1,59 +1,102 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useMemo } from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import Link from "@tiptap/extension-link";
+import { Extension } from "@tiptap/core";
 import EmojiPicker from "emoji-picker-react";
+import Placeholder from "@tiptap/extension-placeholder";
 import "./ChatInput.css";
+import {
+  List,
+  ListOrdered,
+  Smile,
+  Bold,
+  Italic,
+  Underline as UnderlineIcon,
+  Strikethrough,
+  Code,
+  SendHorizontal,
+} from "lucide-react";
 
-const ChatInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
+// Extensión para Enter/Shift+Enter
+const EnterSubmit = Extension.create({
+  name: "enterSubmit",
+
+  addKeyboardShortcuts() {
+    return {
+      Enter: () => {
+        this.editor.view.dom.closest("form")?.requestSubmit();
+        return true;
+      },
+      "Shift-Enter": () => {
+        return this.editor.commands.first(({ commands }) => [
+          () => commands.newlineInCode(),
+          () => commands.createParagraphNear(),
+          () => commands.liftEmptyBlock(),
+          () => commands.splitBlock(),
+        ]);
+      },
+    };
+  },
+});
+
+const ChatInput = ({
+  newMessage,
+  setNewMessage,
+  handleSendMessage,
+  channelName,
+}) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [cursorPosition, setCursorPosition] = useState(null);
-  const inputRef = useRef(null);
 
-  // Posicionar cursor después de actualizar el mensaje
-  useEffect(() => {
-    if (cursorPosition !== null && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.setSelectionRange(cursorPosition, cursorPosition);
-      setCursorPosition(null);
+  const editorConfig = useMemo(
+    () => ({
+      extensions: [
+        StarterKit.configure({
+          hardBreak: false,
+          link: false, // ← Desactivar link del StarterKit
+          underline: false, // ← Desactivar underline del StarterKit
+        }),
+        Underline,
+        Link.configure({
+          openOnClick: false,
+          autolink: true,
+        }),
+        Placeholder.configure({
+          placeholder: `Mensaje #${channelName || "canal"}`,
+        }),
+        EnterSubmit,
+      ],
+      content: "",
+      onUpdate: ({ editor }) => {
+        const text = editor.getText();
+        setNewMessage(text.trim() ? editor.getHTML() : "");
+      },
+    }),
+    [channelName]
+  );
+
+  const editor = useEditor(editorConfig);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newMessage.trim()) {
+      handleSendMessage(e);
+      editor?.commands.clearContent();
     }
-  }, [newMessage, cursorPosition]);
-
-  // Función para envolver texto con formato
-  const wrapText = (before, after = before) => {
-    const input = inputRef.current;
-    const start = input.selectionStart;
-    const end = input.selectionEnd;
-    const selectedText = newMessage.substring(start, end);
-
-    const newText =
-      newMessage.substring(0, start) +
-      before +
-      selectedText +
-      after +
-      newMessage.substring(end);
-
-    setNewMessage(newText);
-
-    // Calcular nueva posición del cursor
-    const newPosition = selectedText
-      ? end + before.length + after.length
-      : start + before.length;
-
-    setCursorPosition(newPosition);
   };
 
-  // Funciones de formato
-  const handleBold = () => wrapText("**");
-  const handleItalic = () => wrapText("*");
-  const handleStrikethrough = () => wrapText("~");
-  const handleCode = () => wrapText("`");
-
-  // Función para agregar emoji
   const onEmojiClick = (emojiObject) => {
-    setNewMessage(newMessage + emojiObject.emoji);
+    editor?.chain().focus().insertContent(emojiObject.emoji).run();
     setShowEmojiPicker(false);
   };
 
+  if (!editor) {
+    return null;
+  }
+
   return (
-    <form onSubmit={handleSendMessage} className="channel-chat-form">
+    <form onSubmit={handleSubmit} className="channel-chat-form">
       <div className="chat-input-wrapper">
         {/* Toolbar */}
         <div className="chat-toolbar">
@@ -61,33 +104,57 @@ const ChatInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
             type="button"
             className="toolbar-button"
             title="Negrita"
-            onClick={handleBold}
+            onClick={() => editor.chain().focus().toggleBold().run()}
           >
-            <strong>B</strong>
+            <Bold size={16} />
           </button>
           <button
             type="button"
             className="toolbar-button"
             title="Cursiva"
-            onClick={handleItalic}
+            onClick={() => editor.chain().focus().toggleItalic().run()}
           >
-            <em>I</em>
+            <Italic size={16} />
+          </button>
+          <button
+            type="button"
+            className="toolbar-button"
+            title="Subrayado"
+            onClick={() => editor.chain().focus().toggleUnderline().run()}
+          >
+            <UnderlineIcon size={16} />
           </button>
           <button
             type="button"
             className="toolbar-button"
             title="Tachado"
-            onClick={handleStrikethrough}
+            onClick={() => editor.chain().focus().toggleStrike().run()}
           >
-            <s>S</s>
+            <Strikethrough size={16} />
           </button>
           <button
             type="button"
             className="toolbar-button"
             title="Código"
-            onClick={handleCode}
+            onClick={() => editor.chain().focus().toggleCode().run()}
           >
-            &lt;/&gt;
+            <Code size={16} />
+          </button>
+          <button
+            type="button"
+            className="toolbar-button"
+            title="Lista con viñetas"
+            onClick={() => editor.chain().focus().toggleBulletList().run()}
+          >
+            <List size={16} />
+          </button>
+          <button
+            type="button"
+            className="toolbar-button"
+            title="Lista numerada"
+            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          >
+            <ListOrdered size={16} />
           </button>
           <button
             type="button"
@@ -95,7 +162,7 @@ const ChatInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
             title="Emoji"
             onClick={() => setShowEmojiPicker(!showEmojiPicker)}
           >
-            😊
+            <Smile size={16} />
           </button>
         </div>
 
@@ -110,26 +177,22 @@ const ChatInput = ({ newMessage, setNewMessage, handleSendMessage }) => {
           </div>
         )}
 
-        {/* Input + Botón */}
+        {/* Input */}
         <div className="chat-input-container">
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Escribí tu mensaje..."
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            className="channel-chat-input"
-          />
-
-          <button
-            type="submit"
-            className={`channel-chat-button ${
-              newMessage.trim() ? "active" : ""
-            }`}
-            disabled={!newMessage.trim()}
-          >
-            ▶
-          </button>
+          <div>
+            <EditorContent editor={editor} className="channel-chat-input" />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className={`channel-chat-button ${
+                newMessage.trim() ? "active" : ""
+              }`}
+              disabled={!newMessage.trim()}
+            >
+              <SendHorizontal size={15} />
+            </button>
+          </div>
         </div>
       </div>
     </form>

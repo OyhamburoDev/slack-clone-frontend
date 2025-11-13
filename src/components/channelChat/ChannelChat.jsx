@@ -12,6 +12,7 @@ const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
   const { workspace_id, channel_id } = useParams();
   const [menuAbierto, setMenuAbierto] = useState(false);
   const menuRef = useRef(null);
+  const messagesEndRef = useRef(null);
   const navigate = useNavigate();
   console.log("que tiene channel id", channel_id);
 
@@ -26,6 +27,13 @@ const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
       setNewMessage("");
     }
   };
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    }
+  }, [messages]); // Se ejecuta cada vez que cambian los mensajes
+
   // useEffect(() => {
   //   // Definimos una función async dentro del useEffect
   //   const fetchMessages = async () => {
@@ -97,7 +105,7 @@ const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
           </div>
         )}
       </div>
-      <div className="channel-chat-messages">
+      <div className="channel-chat-messages" ref={messagesEndRef}>
         <MessageList messages={messages} />
       </div>
 
@@ -105,6 +113,7 @@ const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
         newMessage={newMessage}
         setNewMessage={setNewMessage}
         handleSendMessage={handleSendMessage}
+        channelName={channelName}
       />
     </div>
   );

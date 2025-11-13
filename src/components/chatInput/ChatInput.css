@@ -1,10 +1,10 @@
-/* Form principal */
+/* ========== FORM PRINCIPAL ========== */
 .channel-chat-form {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
 }
 
-/* Contenedor del input + toolbar */
+/* ========== CONTENEDOR PRINCIPAL ========== */
 .chat-input-wrapper {
   background: #23272b;
   border: 1px solid #696868d0;
@@ -12,20 +12,18 @@
   padding: 8px;
 }
 
-/* Toolbar */
+/* ========== TOOLBAR ========== */
 .chat-toolbar {
   display: flex;
   gap: 4px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #444;
-  margin-bottom: 8px;
 }
 
 .toolbar-button {
   background: transparent;
   border: 1px solid transparent;
   border-radius: 4px;
-  color: #fff;
+  color: #a9a9a9;
   cursor: pointer;
   padding: 4px 8px;
   font-size: 14px;
@@ -37,14 +35,29 @@
   border-color: #666;
 }
 
-/* Contenedor de input + botón */
+/* ========== EMOJI PICKER ========== */
+.emoji-picker-container {
+  margin-bottom: 8px;
+}
+
+/* ========== INPUT + BOTÓN ========== */
 .chat-input-container {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 8px;
 }
 
-/* Input */
+.chat-input-container > div:first-child {
+  flex: 1;
+  min-height: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.chat-input-container > div:last-child {
+  flex-shrink: 0;
+}
+
 .channel-chat-input {
   flex: 1;
   padding: 8px;
@@ -60,32 +73,86 @@
 
 /* Botón enviar */
 .channel-chat-button {
-  padding: 6px 10px;
+  padding: 5px 10px;
   background: transparent;
   color: #888;
   border: 1px solid transparent;
   border-radius: 4px;
   cursor: not-allowed;
-  font-size: 12px;
   transition: all 0.2s;
 }
 
-/* Botón activo (con texto) */
 .channel-chat-button.active {
-  background: #2eb67d;
+  background: #327d5e;
   color: #fff;
   cursor: pointer;
 }
 
 .channel-chat-button.active:hover {
-  background: #1fa366;
+  background: #3a906c;
 }
 
 .channel-chat-button:disabled {
   opacity: 0.5;
 }
-.emoji-picker-container {
-  margin-bottom: 8px;
+
+/* ========== TIPTAP EDITOR ========== */
+.ProseMirror {
+  outline: none;
+  min-height: 20px;
+}
+
+.ProseMirror p {
+  margin: 0;
+}
+
+/* Placeholder */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #888;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Código inline */
+.ProseMirror code {
+  background-color: #e8e8e8;
+  color: #e01e5a;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+/* Listas */
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+}
+
+.ProseMirror li {
+  margin: 4px 0;
+}
+
+/* Links */
+.ProseMirror a {
+  color: #1264a3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror a:hover {
+  color: #0e5189;
 }
 
 /* ========== RESPONSIVE ========== */

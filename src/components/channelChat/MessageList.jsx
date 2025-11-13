@@ -161,7 +161,10 @@ const MessageList = ({ messages = [] }) => {
                 )}
 
                 {/* El contenido SIEMPRE se muestra */}
-                <p className="message-content">{msg.content}</p>
+                <div
+                  className="message-content"
+                  dangerouslySetInnerHTML={{ __html: msg.content }}
+                />
               </div>
             </div>
           </div>
