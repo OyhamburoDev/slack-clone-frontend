@@ -16,17 +16,17 @@
 }
 
 .icons-sidebar {
-  flex: 0 0 70px;
+  flex: 0 0 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 1rem;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .card {
   background: rgba(255, 255, 255, 0.15);
-  padding: 20px;
+  padding: 15px;
   backdrop-filter: blur(10px);
   height: 90vh; /* Cambio de min-height a height fija */
   border: 1px solid rgba(255, 255, 255, 0.1);

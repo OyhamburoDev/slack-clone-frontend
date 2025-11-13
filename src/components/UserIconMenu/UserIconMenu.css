@@ -1,21 +1,21 @@
 /* ========== CONTENEDOR DEL COMPONENTE ========== */
 .user-icon-menu-container {
   position: relative; /* Importante: para que el menú se posicione relativo a este contenedor */
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
 }
 
 /* ========== ÍCONO DE USUARIO ========== */
 .user-icon {
-  width: 43px;
-  height: 43px;
+  width: 38px;
+  height: 36px;
   border-radius: 8px;
-  background-color: #ffffff; /* Fondo blanco */
+  background-color: #dedede; /* Fondo blanco */
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  color: #1a1d21; /* Color verde de Slack */
+  color: #1a1d21e7; /* Color verde de Slack */
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -37,8 +37,8 @@
 .user-menu-dropdown {
   /* Posición */
   position: absolute;
-  left: 50px; /* Se pone a la derecha del ícono */
-  bottom: -4rem; /* Alineado con el fondo del ícono */
+  left: 48px; /* Se pone a la derecha del ícono */
+  bottom: -6rem; /* Alineado con el fondo del ícono */
 
   /* Tamaño */
   min-width: 250px; /* Ancho mínimo del cartel */

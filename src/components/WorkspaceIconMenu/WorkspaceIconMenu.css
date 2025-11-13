@@ -5,8 +5,8 @@
 
 /* ========== ÍCONO DEL WORKSPACE ========== */
 .workspace-icon-main {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
 
   display: flex;
@@ -21,7 +21,7 @@
 }
 
 .workspace-initials {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #ffffff;
   user-select: none;
@@ -64,7 +64,7 @@
 /* ========== MENÚ DESPLEGABLE ========== */
 .workspace-menu-dropdown {
   position: absolute;
-  left: 55px;
+  left: 50px;
   top: 0;
 
   min-width: 300px;
