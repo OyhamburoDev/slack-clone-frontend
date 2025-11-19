@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
-
+import { formatTimeFromDate } from "../../utils/dateFormatter";
 import "./ChannelList.css";
 
 const ChannelList = ({
@@ -8,19 +8,13 @@ const ChannelList = ({
   selectedChannel,
   channels,
   onCreateClick,
+  isMobile,
 }) => {
   const { workspace_id } = useParams();
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingBottom: "0.5rem",
-        }}
-      >
+    <div className="channelList-cnt">
+      <div className="channelList-title-cnt">
         <h2 className="canal-title">Canales</h2>
         <button onClick={onCreateClick} className="add-channel-button">
           +
@@ -36,7 +30,12 @@ const ChannelList = ({
                 elemento._id === selectedChannel ? "channel-item-active" : ""
               }`}
             >
-              # {elemento.name}
+              <span># {elemento.name}</span>
+              {isMobile && (
+                <span className="channel-time">
+                  {formatTimeFromDate(elemento.lastMessageAt)}
+                </span>
+              )}
             </button>
           );
         })}

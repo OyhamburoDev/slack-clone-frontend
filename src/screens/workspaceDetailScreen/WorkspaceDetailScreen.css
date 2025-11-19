@@ -10,6 +10,9 @@
   display: flex;
   margin-top: 0.5rem;
 }
+.hamburger-button {
+  display: none;
+}
 
 .ws-detail-title {
   color: white;
@@ -48,12 +51,66 @@
 
 .left-card-content {
   flex: 1;
-  overflow-y: auto;
+  display: flex; /* ← Agregar */
+  flex-direction: column; /* ← Agregar */
+  min-height: 0; /* ← Agregar */
 }
 
 .left-title-name {
   border-bottom: 1px solid #d2bfd22d;
   padding-bottom: 1rem;
+}
+
+/* Contenedor con scroll solo para canales */
+.channels-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: transparent rgba(37, 12, 37, 0.959); /* ← Oculto por defecto */
+  transition: scrollbar-color 0.3s;
+}
+
+/* Mostrar scrollbar solo en hover */
+.channels-scroll-container:hover {
+  scrollbar-color: #444 rgba(37, 12, 37, 0.959);
+}
+
+/* Chrome, Edge, Safari */
+.channels-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.channels-scroll-container::-webkit-scrollbar-track {
+  background: rgba(37, 12, 37, 0.959);
+}
+
+.channels-scroll-container::-webkit-scrollbar-thumb {
+  background: transparent; /* ← Oculto por defecto */
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+/* Mostrar scrollbar en hover */
+.channels-scroll-container:hover::-webkit-scrollbar-thumb {
+  background: #444;
+}
+
+.channels-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Quitar flechitas (botones) - más específico */
+.channels-scroll-container::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.channels-scroll-container::-webkit-scrollbar-button:start:decrement,
+.channels-scroll-container::-webkit-scrollbar-button:end:increment {
+  display: none;
 }
 
 .left-card-footer {
@@ -164,6 +221,7 @@
     border-radius: 10px;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     max-height: 70vh;
+    background: linear-gradient(135deg, #4a154b 0%, #36184c 50%, #1a0b2e 100%);
   }
 
   .right-card {
@@ -189,47 +247,77 @@
 }
 
 /* Móviles */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .workspace-detail-container {
-    padding: 8px;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cards-container {
+    flex: 1;
+    margin: 0;
+  }
+
+  .workspace-header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  .workspace-header-container.hide-header {
+    display: none;
+  }
+
+  .hamburger-button {
+    display: block;
+  }
+
+  .search-container {
+    border-radius: 30px;
+    width: 80%;
+  }
+
+  .search-input-wrapper {
+    border-radius: 30px;
   }
 
   .card {
-    padding: 12px;
-    margin-bottom: 8px;
+    padding: 0;
+    margin-bottom: 0;
   }
 
-  .ws-detail-title {
-    font-size: 1rem;
-  }
-
-  .left-card {
-    max-height: 60vh;
+  /* Por defecto: mostrar lista de canales */
+/* .left-card {
+    display: flex;
+    height: 100%;
+    border-radius: 0 !important;
   }
 
   .right-card {
-    height: 70vh; /* ← Cambiar de min-height a height */
-    max-height: 70vh; /* ← Agregar max-height */
+    display: none;
+  } */
+
+/* Cuando hay canal seleccionado: mostrar chat */
+/* .cards-container.show-chat .left-card {
+    display: none;
   }
 
-  .footer-text {
-    font-size: 0.85rem;
-    margin-bottom: 8px;
+  .cards-container.show-chat .right-card {
+    display: flex !important;
+    height: 100%;
+    border-radius: 0 !important;
   }
 
+  .footer-text,
   .invite-button {
-    font-size: 12px;
-    padding: 8px;
+    display: none;
   }
-
-  .empty-chat-message {
-    font-size: 0.9rem;
-    padding: 15px;
-  }
-}
+}  */
 
 /* Móviles muy pequeños */
-@media (max-width: 360px) {
+/* @media (max-width: 360px) {
   .workspace-detail-container {
     padding: 5px;
   }
@@ -245,4 +333,4 @@
   .left-card-content {
     padding: 0;
   }
-}
+} */

@@ -43,6 +43,16 @@
   background-color: #ffffff;
 }
 
+/* Código inline en mensajes */
+.message-content code {
+  background-color: #e8e8e8;
+  color: #e01e5a;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+}
+
 /* Si quieres un tema oscuro, puedes agregar: */
 @media (prefers-color-scheme: dark) {
   .date-divider-line {

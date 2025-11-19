@@ -5,10 +5,20 @@ import { useNavigate } from "react-router";
 import { deleteWorkspace } from "../../services/workspaceService"; // ← Nuevo
 import "./WorkspaceIconMenu.css";
 
-const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces, isAdmin }) => {
+const WorkspaceIconMenu = ({
+  currentWorkspace,
+  allWorkspaces,
+  isAdmin,
+  onDeleteworkspace,
+}) => {
   // ← Agregá isAdmin
-  const { menuAbierto, menuRef, toggleMenu, handleWorkspaceClick } =
-    useWorkspaceMenu();
+  const {
+    menuAbierto,
+    menuRef,
+    toggleMenu,
+    handleWorkspaceClick,
+    setMenuAbierto,
+  } = useWorkspaceMenu();
   const navigate = useNavigate();
 
   if (!currentWorkspace) {
@@ -21,19 +31,24 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces, isAdmin }) => {
     navigate("/workspace/new");
   };
 
-  // ← Nueva función
-  const handleDeleteWorkspace = async () => {
-    if (
-      window.confirm(`¿Seguro que querés eliminar "${currentWorkspace.name}"?`)
-    ) {
-      const result = await deleteWorkspace(currentWorkspace._id);
-      if (result.ok) {
-        navigate("/home");
-      } else {
-        alert("Error: " + result.message);
-      }
-    }
+  const handleDeleteWorkspace = () => {
+    onDeleteworkspace(); // Solo abre el modal
+    setMenuAbierto(false);
   };
+
+  // ← Nueva función
+  // const handleDeleteWorkspace = async () => {
+  //   if (
+  //     window.confirm(`¿Seguro que querés eliminar "${currentWorkspace.name}"?`)
+  //   ) {
+  //     const result = await deleteWorkspace(currentWorkspace._id);
+  //     if (result.ok) {
+  //       navigate("/home");
+  //     } else {
+  //       alert("Error: " + result.message);
+  //     }
+  //   }
+  // };
 
   return (
     <div className="workspace-icon-menu-container" ref={menuRef}>
@@ -57,7 +72,7 @@ const WorkspaceIconMenu = ({ currentWorkspace, allWorkspaces, isAdmin }) => {
                 className="workspace-delete-link"
                 onClick={handleDeleteWorkspace}
               >
-                Eliminar workspace
+                Eliminar espacio de trabajo
               </div>
             )}
           </div>

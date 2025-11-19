@@ -7,13 +7,15 @@
 .search-input-wrapper {
   display: flex;
   align-items: center;
-  background: #ffffff41;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 6px;
   padding: 6px 12px;
   gap: 8px;
   max-width: 630px;
   width: 100%;
   transition: border-color 0.2s;
+  /* border: 1px solid rgba(121, 72, 206, 0.3); */
+  backdrop-filter: blur(8px);
 }
 
 .search-input-wrapper:focus-within {
@@ -85,4 +87,80 @@
 .search-result-text {
   color: #fff;
   font-size: 14px;
+}
+.message-result {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.message-result-content {
+  flex: 1;
+  width: 100%;
+}
+
+.message-result-header {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.message-result-author {
+  font-weight: 600;
+  color: #fff;
+  font-size: 13px;
+}
+
+.message-result-channel {
+  color: #888;
+  font-size: 12px;
+}
+
+.message-result-text {
+  color: #ccc;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Scrollbar personalizado para el dropdown */
+.search-results {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #444 #1a1d21; /* Firefox */
+}
+
+/* Chrome, Edge, Safari */
+.search-results::-webkit-scrollbar {
+  width: 8px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: #1a1d21;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    flex: 1;
+    max-width: none;
+  }
+
+  .search-input-wrapper {
+    width: 90%;
+    border-radius: 20px;
+    max-width: none;
+  }
+
+  .search-input {
+    font-size: 16px;
+    padding: 4px;
+  }
 }

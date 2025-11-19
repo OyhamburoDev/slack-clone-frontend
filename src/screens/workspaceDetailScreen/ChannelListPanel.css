@@ -1,0 +1,188 @@
+.workspace-detail-container-panel {
+  background: #0f0a1e;
+  height: 100vh; /* ← Cambiar de min-height a height */
+  display: flex; /* ← Agregar */
+  flex-direction: column; /* ← Agregar */
+  padding: 0;
+}
+
+.mobile-header-panel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  flex-shrink: 0; /* ← Agregar: que no se achique */
+  background: #0f0a1e;
+}
+
+.hamburger-button-panel {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px; /* ← Agregar */
+  display: flex; /* ← Agregar */
+  align-items: center; /* ← Agregar */
+  justify-content: center; /* ← Agregar */
+  padding: 0; /* ← Agregar */
+}
+
+.card-panel {
+  flex: 1; /* ← Cambiar: toma el espacio restante */
+  background: rgba(255, 255, 255, 0.15);
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  overflow: hidden; /* ← Cambiar: no scroll acá */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.left-card-panel {
+  height: 100%; /* ← Agregar */
+  background: #1e1433;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+}
+
+.left-card-content-panel {
+  flex: 1;
+  display: flex; /* ← Agregar */
+  flex-direction: column; /* ← Agregar */
+  min-height: 0; /* ← Agregar */
+}
+
+.left-title-name-panel {
+  border-bottom: 1px solid #d2bfd22d;
+  padding-bottom: 1rem;
+}
+/* Contenedor con scroll solo para canales */
+.channels-scroll-container-panel {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: transparent rgba(37, 12, 37, 0.959); /* ← Oculto por defecto */
+  transition: scrollbar-color 0.3s;
+}
+
+/* Mostrar scrollbar solo en hover */
+.channels-scroll-container-panel:hover {
+  scrollbar-color: #444 rgba(37, 12, 37, 0.959);
+}
+
+/* Chrome, Edge, Safari */
+.channels-scroll-container-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.channels-scroll-container-panel::-webkit-scrollbar-track {
+  background: rgba(37, 12, 37, 0.959);
+}
+
+.channels-scroll-container-panel::-webkit-scrollbar-thumb {
+  background: transparent; /* ← Oculto por defecto */
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+/* Mostrar scrollbar en hover */
+.channels-scroll-container-panel:hover::-webkit-scrollbar-thumb {
+  background: #444;
+}
+
+.channels-scroll-container-panel::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Quitar flechitas (botones) - más específico */
+.channels-scroll-container-panel::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.channels-scroll-container-panel::-webkit-scrollbar-button:start:decrement,
+.channels-scroll-container-panel::-webkit-scrollbar-button:end:increment {
+  display: none;
+}
+
+.invite-button-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #7948ce;
+  border: none;
+  box-shadow: 0 4px 12px rgba(121, 72, 206, 0.4);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.invite-button-panel .btn-text {
+  display: none;
+}
+
+.footer-text-panel {
+  display: none;
+}
+
+/* Contenedor del dropdown */
+.actions-dropdown-panel {
+  position: fixed;
+  bottom: 85px;
+  right: 15px;
+  background-color: #1a1d21;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  animation: slideUp 0.2s ease;
+  z-index: 1000;
+  min-width: 250px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Items del menú */
+.actions-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.actions-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.actions-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.actions-dropdown-item:active {
+  background-color: rgba(255, 255, 255, 0.15);
+}

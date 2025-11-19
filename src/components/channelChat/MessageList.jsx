@@ -89,7 +89,9 @@ const formatMessageTime = (dateString) => {
 const MessageList = ({ messages = [] }) => {
   if (!messages.length) {
     return (
-      <p style={{ color: "#888" }}>Todavía no hay mensajes en este canal.</p>
+      <p style={{ color: "#888", paddingLeft: "1rem" }}>
+        Todavía no hay mensajes en este canal.
+      </p>
     );
   }
 

@@ -5,16 +5,21 @@ import "./ChannelChat.css";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { deleteChannel } from "../../services/channelService";
-import { MoreVertical } from "lucide-react";
+import { MoreVertical, Trash2 } from "lucide-react";
 import ChatInput from "../chatInput/ChatInput";
+import Modal from "../modals/Modal";
 
-const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
+const ChannelChat = ({
+  channelName,
+  isAdmin,
+  loadChannelList,
+  onDeleteChannel,
+}) => {
   const { workspace_id, channel_id } = useParams();
   const [menuAbierto, setMenuAbierto] = useState(false);
   const menuRef = useRef(null);
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
-  console.log("que tiene channel id", channel_id);
 
   const { messages, createChannelMessage, loadMessagesList } =
     useChannelMessage();
@@ -33,17 +38,6 @@ const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
       messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
     }
   }, [messages]); // Se ejecuta cada vez que cambian los mensajes
-
-  // useEffect(() => {
-  //   // Definimos una función async dentro del useEffect
-  //   const fetchMessages = async () => {
-  //     if (workspace_id && channel_id) {
-  //       await loadMessagesList(workspace_id, channel_id);
-  //     }
-  //   };
-
-  //   fetchMessages(); // Llamamos la función
-  // }, [workspace_id, channel_id]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -68,54 +62,70 @@ const ChannelChat = ({ channelName, isAdmin, loadChannelList }) => {
     setMenuAbierto(!menuAbierto);
   };
 
-  const handleEliminarCanal = async () => {
-    if (window.confirm("¿Seguro que querés eliminar este canal?")) {
-      const result = await deleteChannel(workspace_id, channel_id);
-      await loadChannelList();
-      setMenuAbierto(false);
-      if (result.ok) {
-        navigate(`/workspace/${workspace_id}`);
-      } else {
-        alert("Error: " + result.message);
-      }
-    }
-  };
-
   return (
-    <div className="channel-chat-container">
-      <div className="channel-chat-header">
-        <h3 className="channel-chat-title"># {channelName}</h3>
-        {isAdmin && channel_id && (
-          <div ref={menuRef}>
-            <div className="channel-chat-title-button-ctn" onClick={toggleMenu}>
-              <MoreVertical size={20} color="white" />
-            </div>
-
-            {/*  Dropdown menu */}
-            {menuAbierto && (
-              <div className="channel-menu-dropdown">
-                <div
-                  className="channel-menu-item"
-                  onClick={handleEliminarCanal}
-                >
-                  Eliminar canal
-                </div>
+    <>
+      <div className="channel-chat-container">
+        <div className="channel-chat-header">
+          <button
+            className="back-button-mobile"
+            onClick={() => {
+              loadChannelList();
+              navigate(`/workspace/${workspace_id}`);
+            }}
+          >
+            ←
+          </button>
+          <h3 className="channel-chat-title"># {channelName}</h3>
+          {isAdmin && channel_id && (
+            <div ref={menuRef}>
+              <div
+                className="channel-chat-title-button-ctn"
+                onClick={toggleMenu}
+              >
+                <MoreVertical size={20} color="white" />
               </div>
-            )}
-          </div>
-        )}
-      </div>
-      <div className="channel-chat-messages" ref={messagesEndRef}>
-        <MessageList messages={messages} />
-      </div>
 
-      <ChatInput
-        newMessage={newMessage}
-        setNewMessage={setNewMessage}
-        handleSendMessage={handleSendMessage}
-        channelName={channelName}
-      />
-    </div>
+              {/*  Dropdown menu */}
+              {menuAbierto && (
+                <div className="channel-menu-dropdown">
+                  <div
+                    className="channel-menu-item channel-menu-item--danger"
+                    onClick={() => {
+                      setMenuAbierto(false);
+                      onDeleteChannel();
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Eliminar canal"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        setMenuAbierto(false);
+                        onDeleteChannel();
+                      }
+                    }}
+                  >
+                    <Trash2 size={16} className="trash-icon-mobile" />
+                    <span className="channel-menu-item-text">
+                      Eliminar canal
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        <div className="channel-chat-messages" ref={messagesEndRef}>
+          <MessageList messages={messages} />
+        </div>
+
+        <ChatInput
+          newMessage={newMessage}
+          setNewMessage={setNewMessage}
+          handleSendMessage={handleSendMessage}
+          channelName={channelName}
+        />
+      </div>
+    </>
   );
 };
 

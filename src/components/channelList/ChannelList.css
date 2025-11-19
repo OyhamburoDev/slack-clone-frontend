@@ -1,6 +1,18 @@
+.channelList-cnt {
+  display: flex;
+  flex-direction: column;
+}
+
+.channelList-title-cnt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+
 .canal-title {
   color: #d1bdd6;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
 
@@ -15,6 +27,9 @@
   border-radius: 6px;
   font-size: 1rem;
   transition: background 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .channel-item:hover {
@@ -65,20 +80,33 @@
 
 /* Móviles */
 @media (max-width: 480px) {
+  .channelList-title-cnt {
+    display: none;
+  }
+
   .canal-title {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .channel-item {
-    font-size: 13px;
-    padding: 10px 6px;
+    font-size: 22px;
+    padding: 15px 6px;
     margin: 3px 0;
+    padding-right: 1rem;
+    padding-left: 0.5rem;
+  }
+  .channel-time {
+    font-size: 0.9rem; /* Un poquito más grande en mobile */
   }
 
   .add-channel-button {
     font-size: 20px;
     width: 26px;
     height: 26px;
+  }
+  .channel-item-active {
+    background: #2d1b4e;
+    color: #fff;
   }
 }
 

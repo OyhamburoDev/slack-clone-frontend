@@ -36,5 +36,6 @@ export const useWorkspaceMenu = () => {
     menuRef,
     toggleMenu,
     handleWorkspaceClick,
+    setMenuAbierto,
   };
 };
