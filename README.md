@@ -1,4 +1,4 @@
-# Slack Clone - Full-Stack Real-Time Chat Application
+# Clon de Slack - Aplicación de Chat en Tiempo Real
 
 Aplicación web full-stack que replica Slack con mensajería en tiempo real, gestión de workspaces, canales y sistema completo de permisos. Desarrollada con React, Node.js, MongoDB y WebSockets.
 
@@ -23,7 +23,6 @@ Contraseña: Demo123456
 ## 🔗 Enlaces del Proyecto
 
 - 🌐 **Demo Frontend:** [https://slackapp-utn.vercel.app](https://slackapp-utn.vercel.app)
-- 💻 **Repositorio Frontend:** [GitHub - Frontend](https://github.com/OyhamburoDev/slack-clone-frontend)
 - ⚙️ **Repositorio Backend:** [GitHub - Backend](https://github.com/OyhamburoDev/slack-clone-backend)
 - 📡 **API Backend:** [https://slack-clone-backend-bk4o.onrender.com](https://slack-clone-backend-bk4o.onrender.com)
 
