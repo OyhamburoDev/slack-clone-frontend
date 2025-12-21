@@ -74,8 +74,14 @@ const WorkspaceDetailScreen = () => {
 
   const handleInviteMember = async (e) => {
     e.preventDefault();
+    console.log("🚀 handleInviteMember ejecutado");
+    console.log("📧 Email:", inviteEmail);
+
     if (inviteEmail.trim()) {
+      console.log("✅ Email válido, enviando...");
       const result = await inviteMember(workspace_id, inviteEmail);
+      console.log("📊 Resultado:", result);
+
       if (result.ok) {
         alert("Invitación enviada!");
         setInviteEmail("");
@@ -83,6 +89,8 @@ const WorkspaceDetailScreen = () => {
       } else {
         alert("Error: " + result.message);
       }
+    } else {
+      console.log("❌ Email vacío");
     }
   };
 
@@ -260,7 +268,10 @@ const WorkspaceDetailScreen = () => {
                     <p className="footer-text">Slack es mejor si se combina.</p>
                     <button
                       className="invite-button"
-                      onClick={() => setIsInviteModalOpen(true)}
+                      onClick={() => {
+                        console.log("🔥 CLICK EN INVITAR");
+                        setIsInviteModalOpen(true);
+                      }}
                     >
                       <UserPlus size={15} />
                       Invita a compañeros de equipo
