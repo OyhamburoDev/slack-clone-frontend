@@ -4,6 +4,8 @@ Aplicación web full-stack que replica Slack con mensajería en tiempo real, ges
 
 > 🎓 **Proyecto en Evolución:** Comenzó como proyecto final para UTN (Universidad Tecnológica Nacional), pero continué desarrollándolo por iniciativa propia, agregando características avanzadas como WebSockets, editor de texto enriquecido, sistema de búsqueda, y arquitectura escalable.
 
+<video src="./video/demo-slack-clone.mp4" autoplay loop muted playsinline></video>
+
 ## 🌐 Demo en Vivo
 
 🔗 **[Ver Demo](https://slackapp-utn.vercel.app)**
