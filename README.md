@@ -34,6 +34,19 @@ Contraseña: Demo123456
 
 ---
 
+## 📸 Screenshots clave
+
+### 🏠 Login
+![Login](./screenshots/login.png)
+
+### 💬 Workspace + Chat en tiempo real
+![Chat](./screenshots/chat.png)
+
+### 🔍 Búsqueda Global
+![Búsqueda Global](./screenshots/search.png)
+
+---
+
 ## ✨ Características Principales
 
 ### 🔐 Autenticación y Seguridad
