@@ -4,7 +4,11 @@ Aplicación web full-stack que replica Slack con mensajería en tiempo real, ges
 
 > 🎓 **Proyecto en Evolución:** Comenzó como proyecto final para UTN (Universidad Tecnológica Nacional), pero continué desarrollándolo por iniciativa propia, agregando características avanzadas como WebSockets, editor de texto enriquecido, sistema de búsqueda, y arquitectura escalable.
 
+---
+
 ![Demo de la aplicación](./video/demo-slack-clone.gif)
+
+---
 
 ## 🌐 Demo en Vivo
 
@@ -30,27 +34,16 @@ Contraseña: Demo123456
 
 ---
 
-## 📸 Screenshots
+## 📸 Screenshots clave
 
-### 🏠 Página de Login
-
+### 🏠 Login
 ![Login](./screenshots/login.png)
 
-### 🏢 Home - Lista de Workspaces
+### 💬 Workspace + Chat en tiempo real
+![Chat](./screenshots/chat.png)
 
-![Home](./screenshots/home.png)
-
-### 💬 Workspace - Chat y Canales
-
-![Workspace Chat](./screenshots/workspace-chat.png)
-
-### 📢 Crear Canal
-
-![Crear Canal](./screenshots/crear-canal.png)
-
-### 🗑️ Eliminar Workspace (Admin)
-
-![Eliminar Workspace](./screenshots/delete-workspace.png)
+### 🔍 Búsqueda Global
+![Búsqueda Global](./screenshots/search.png)
 
 ---
 
